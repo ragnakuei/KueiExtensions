@@ -4,13 +4,17 @@ using NUnit.Framework;
 
 namespace KueiExtensionsTests.Common.DictionaryExtensions
 {
-    public class Dictionary_TKeyNullableStruct_TValueNullableStruct_GetValueOrDefaultOrNullTests
+    public class Dictionary_TKeyClass_TValueNullableStruct_GetValueOrNullTests
     {
-        private enum TestKey
+        private class TestKey
         {
-            A = 0,
-            B = 1,
+            public int Id { get; set; }
+
+            public string Name { get; set; }
         }
+
+        private static TestKey _testKeyA = new() { Id = 1, Name = "A" };
+        private static TestKey _testKeyB = new() { Id = 2, Name = "B" };
 
         private enum TestValue
         {
@@ -21,27 +25,23 @@ namespace KueiExtensionsTests.Common.DictionaryExtensions
         private Dictionary<TestKey?, TestValue?> _map
             = new()
               {
-                  [TestKey.A] = TestValue.A,
-                  [TestKey.B] = TestValue.B,
+                  [_testKeyA] = TestValue.A,
+                  [_testKeyB] = TestValue.B,
               };
 
         [Test]
         public void Key為Null_回傳Null()
         {
-            var actual = _map.GetValueOrNull(null);
-
+            var        actual   = _map.GetValueOrNull(null);
             TestValue? expected = null;
-
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void 回傳符合項目()
         {
-            var actual = _map.GetValueOrNull(TestKey.A);
-
+            var actual   = _map.GetValueOrNull(_testKeyA);
             var expected = TestValue.A;
-
             Assert.AreEqual(expected, actual);
         }
     }

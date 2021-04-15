@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>KueiExtensions</PackageId>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
     <Authors>Kuei</Authors>
     <Company>RagnaKuei</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>1.0.3</PackageVersion>
+    <PackageVersion>1.0.4</PackageVersion>
     <PackageProjectUrl>https://github.com/ragnakuei/KueiExtensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ragnakuei/KueiExtensions</RepositoryUrl>
-    <AssemblyVersion>1.0.3</AssemblyVersion>
+    <AssemblyVersion>1.0.4</AssemblyVersion>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 

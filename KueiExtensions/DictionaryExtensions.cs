@@ -9,7 +9,7 @@ namespace KueiExtensions
             where TValue : struct
         {
             if (dict                        == null
-             || key.GetValueDefaultOrNull() == null)
+             || key.GetValueOrNull() == null)
             {
                 return null;
             }
@@ -35,7 +35,7 @@ namespace KueiExtensions
             where TValue : class
         {
             if (dict                        == null
-             || key.GetValueDefaultOrNull() == null)
+             || key.GetValueOrNull() == null)
             {
                 return null;
             }

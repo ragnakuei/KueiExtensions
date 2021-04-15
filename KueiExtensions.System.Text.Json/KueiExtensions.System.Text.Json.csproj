@@ -2,6 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
+        <PackageProjectUrl>https://github.com/ragnakuei/KueiExtensions</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/ragnakuei/KueiExtensions</RepositoryUrl>
+        <Company>RagnaKuei</Company>
+        <Authors>Kuei</Authors>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>

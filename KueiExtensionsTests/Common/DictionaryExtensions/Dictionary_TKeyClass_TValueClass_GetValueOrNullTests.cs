@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace KueiExtensionsTests.Common.DictionaryExtensions
 {
-    public class Dictionary_TKeyClass_TValueClass_GetValueOrDefaultOrNullTests
+    public class Dictionary_TKeyClass_TValueClass_GetValueOrNullTests
     {
         private class TestKey
         {

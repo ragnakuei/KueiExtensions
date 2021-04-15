@@ -1,17 +1,14 @@
-using System;
 using KueiExtensions;
 using NUnit.Framework;
 
 namespace KueiExtensionsTests.Common.StructExtensions
 {
-    public class NullableFlagsEnumGetValueDefaultOrNullTests
+    public class NullableEnumGetValueNullTests
     {
-        [Flags]
         private enum Test
         {
-            A = 1,
-            B = 2,
-            C = 4,
+            A = 0,
+            B = 1,
         }
 
         [Test]
@@ -19,7 +16,7 @@ namespace KueiExtensionsTests.Common.StructExtensions
         {
             Test? t = null;
 
-            var actual = t.GetValueDefaultOrNull();
+            var actual = t.GetValueOrNull();
 
             var expected = (Test?)null;
 
@@ -31,7 +28,7 @@ namespace KueiExtensionsTests.Common.StructExtensions
         {
             Test? t = Test.A;
 
-            var actual = t.GetValueDefaultOrNull();
+            var actual = t.GetValueOrNull();
 
             var expected = Test.A;
 
@@ -41,23 +38,11 @@ namespace KueiExtensionsTests.Common.StructExtensions
         [Test]
         public void 回傳不符合項目()
         {
-            Test? t = (Test?)8;
+            Test? t = (Test?)2;
 
-            var actual = t.GetValueDefaultOrNull();
+            var actual = t.GetValueOrNull();
 
-            var expected = (Test?)8;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        public void 回傳交集項目()
-        {
-            Test? t = (Test?)3;
-
-            var actual = t.GetValueDefaultOrNull();
-
-            var expected = Test.A | Test.B;
+            var expected = (Test?)2;
 
             Assert.AreEqual(expected, actual);
         }

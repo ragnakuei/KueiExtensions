@@ -2,7 +2,7 @@
 {
     public static class StructExtensions
     {
-        public static T? GetValueDefaultOrNull<T>(this T? t) where T : struct
+        public static T? GetValueOrNull<T>(this T? t) where T : struct
         {
             if (t == null)
             {
