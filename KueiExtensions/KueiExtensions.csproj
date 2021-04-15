@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>KueiExtensions</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Authors>Kuei</Authors>
     <Company>RagnaKuei</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -11,6 +11,7 @@
     <PackageProjectUrl>https://github.com/ragnakuei/KueiExtensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ragnakuei/KueiExtensions</RepositoryUrl>
     <AssemblyVersion>1.0.3</AssemblyVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
