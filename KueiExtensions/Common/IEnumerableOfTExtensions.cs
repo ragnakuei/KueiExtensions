@@ -96,5 +96,25 @@ namespace KueiExtensions.Common
 
             return result;
         }
+
+        /// <summary>
+        /// 將集合資料分頁
+        /// </summary>
+        public static IEnumerable<IEnumerable<T>> ToPaged<T>(this IEnumerable<T> source, int pageSize = 99)
+        {
+            if (source == null)
+            {
+                return Enumerable.Empty<IEnumerable<T>>();
+            }
+
+            return source.Select((v, i) => new
+                                           {
+                                               index = i
+                                              ,
+                                               value = v
+                                           })
+                         .GroupBy(a => a.index / pageSize)
+                         .Select(d => d.Select(d2 => d2.value));
+        }
     }
 }
