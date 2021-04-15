@@ -3,10 +3,10 @@ using System.Data;
 using System.Linq;
 using CreateDb;
 using Dapper;
-using KueiExtensions.DapperExtensions;
+using KueiExtensions.Dapper;
 using NUnit.Framework;
 
-namespace KueiExtensionsTests
+namespace KueiExtensionsTests.Dapper
 {
     public class QueryMultipleBuilderOfTTests
     {

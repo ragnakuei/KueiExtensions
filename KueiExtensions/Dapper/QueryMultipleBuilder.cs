@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using Dapper;
 
-namespace KueiExtensions.DapperExtensions
+namespace KueiExtensions.Dapper
 {
     public class QueryMultipleBuilder
     {

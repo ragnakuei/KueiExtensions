@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace KueiExtensions.DapperExtensions
+namespace KueiExtensions.Dapper
 {
     public static class DapperExtension
     {
