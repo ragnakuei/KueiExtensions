@@ -15,7 +15,7 @@
   - Sqrt()
   - StDev()
 
-- Dictionary<TKey?, TValue?>()
+- Dictionary\<TKey?, TValue?>()
   - .GetValueOrNull()
 
 - String
@@ -29,7 +29,7 @@
 
 - IDbConnection
   - MultipleResult().Read().Query()
-  - MultipleResult<T>().Read().Query()
+  - MultipleResult\<T>().Read().Query()
 
 ## KueiExtensions.System.Text.Json
 
