@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using KueiExtensions.Common;
+using KueiExtensions;
 using NUnit.Framework;
 
 namespace KueiExtensionsTests.Common.DictionaryExtensions

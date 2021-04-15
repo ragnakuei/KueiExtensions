@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using FluentAssertions;
-using KueiExtensions.Common;
+using KueiExtensions;
 using NUnit.Framework;
 
 namespace KueiExtensionsTests.Common.DictionaryExtensions

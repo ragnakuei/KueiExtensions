@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using KueiExtensions.Common;
+using KueiExtensions;
 using NUnit.Framework;
 
 namespace KueiExtensionsTests.Common.IEnumerableOfTExtensions

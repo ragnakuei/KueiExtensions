@@ -1,4 +1,4 @@
-using KueiExtensions.Common;
+using KueiExtensions;
 using NUnit.Framework;
 
 namespace KueiExtensionsTests.Common.DecimalExtensions

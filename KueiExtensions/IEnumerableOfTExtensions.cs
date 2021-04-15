@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace KueiExtensions.Common
+namespace KueiExtensions
 {
     public static class IEnumerableOfTExtensions
     {

@@ -1,4 +1,4 @@
-﻿namespace KueiExtensions.Common
+﻿namespace KueiExtensions
 {
     public static class StructExtensions
     {
