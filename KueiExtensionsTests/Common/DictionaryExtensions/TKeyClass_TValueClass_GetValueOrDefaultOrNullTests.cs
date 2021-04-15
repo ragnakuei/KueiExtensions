@@ -3,7 +3,7 @@ using FluentAssertions;
 using KueiExtensions.Common;
 using NUnit.Framework;
 
-namespace KueiExtensionsTests.Common
+namespace KueiExtensionsTests.Common.DictionaryExtensions
 {
     public class Dictionary_TKeyClass_TValueClass_GetValueOrDefaultOrNullTests
     {

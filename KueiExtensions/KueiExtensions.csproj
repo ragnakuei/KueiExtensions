@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageId>KueiExtensions</PackageId>
+    <Version>1.0.2</Version>
+    <Authors>Kuei</Authors>
+    <Company>RagnaKuei</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

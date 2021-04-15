@@ -1,7 +1,7 @@
 using KueiExtensions.Common;
 using NUnit.Framework;
 
-namespace KueiExtensionsTests.Common
+namespace KueiExtensionsTests.Common.StructExtensions
 {
     public class NullableEnumGetValueDefaultOrNullTests
     {
