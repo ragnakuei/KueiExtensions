@@ -1,5 +1,4 @@
 
-
 ## KueiExtensions
 
 - IEnumerable\<T>
@@ -24,7 +23,8 @@
   - ToDecimal()
   - Utf8Encode()
   - Utf8Decode()
-
+  - ToNullableGuid()
+  
 ## KueiExtensions.Dapper
 
 - IDbConnection

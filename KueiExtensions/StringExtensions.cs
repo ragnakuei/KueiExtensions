@@ -81,5 +81,15 @@ namespace KueiExtensions
 
             return result;
         }
+
+        public static Guid? ToNullableGuid(this string str)
+        {
+            if (Guid.TryParse(str, out var result))
+            {
+                return result;
+            }
+
+            return null;
+        }
     }
 }
