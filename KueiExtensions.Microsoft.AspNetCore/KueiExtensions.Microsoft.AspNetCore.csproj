@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Authors>Kuei</Authors>
+    <Company>RagnaKuei</Company>
+    <PackageProjectUrl>https://github.com/ragnakuei/KueiExtensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ragnakuei/KueiExtensions</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+</Project>

@@ -36,3 +36,10 @@
 - System.Text.Json
   - ToJson()
 
+## KueiExtensions.Microsoft.AspNetCore
+
+- String
+  - GetContentType()
+
+- Controller
+  - RenderViewAsync<T>()
