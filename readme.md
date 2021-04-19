@@ -6,6 +6,7 @@
   - ForEach()
   - Aggregate()
   - ToPaged()
+  - GroupByToDictionary()
 
 - Decimal
   - ToFix()
