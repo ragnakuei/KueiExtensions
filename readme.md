@@ -24,6 +24,7 @@
   - Utf8Encode()
   - Utf8Decode()
   - ToNullableGuid()
+  - ToNullableDateTime()
   
 ## KueiExtensions.Dapper
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -49,7 +50,8 @@ namespace KueiExtensions
 
                                            var charInUtf8 = @$"\u{highHex}{lowHex}";
                                            return charInUtf8;
-                                       }).Join();
+                                       })
+                               .Join();
 
             return charsInutf8;
         }
@@ -75,7 +77,8 @@ namespace KueiExtensions
                                          var bytes = new[] { lowByte, highByte };
 
                                          return bytes;
-                                     }).ToArray();
+                                     })
+                         .ToArray();
 
             string result = Encoding.Unicode.GetString(bytes);
 
@@ -85,6 +88,19 @@ namespace KueiExtensions
         public static Guid? ToNullableGuid(this string str)
         {
             if (Guid.TryParse(str, out var result))
+            {
+                return result;
+            }
+
+            return null;
+        }
+
+        public static DateTime? ToNullableDateTime(this string      str,
+                                                   string           format,
+                                                   IFormatProvider? formatProvider = null,
+                                                   DateTimeStyles   dateTimeStyles = DateTimeStyles.None)
+        {
+            if (DateTime.TryParseExact(str, format: format, formatProvider, dateTimeStyles, out var result))
             {
                 return result;
             }
