@@ -107,5 +107,10 @@ namespace KueiExtensions
 
             return null;
         }
+
+        public static bool IsNullOrWhiteSpace(this string s)
+        {
+            return string.IsNullOrWhiteSpace(s);
+        }
     }
 }
