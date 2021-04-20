@@ -109,12 +109,49 @@ namespace KueiExtensions
 
             return source.Select((v, i) => new
                                            {
-                                               index = i
-                                              ,
+                                               index = i,
                                                value = v
                                            })
                          .GroupBy(a => a.index / pageSize)
                          .Select(d => d.Select(d2 => d2.value));
+        }
+
+        /// <summary>
+        /// GroupBy + ToDictionary
+        /// </summary>
+        public static Dictionary<TKey, List<TElement>> GroupByToDictionary<TKey, TElement>(this IEnumerable<TElement> source, Func<TElement, TKey> keySelector)
+        {
+            var result = new Dictionary<TKey, List<TElement>>();
+
+            foreach (var element in source)
+            {
+                if (keySelector.Invoke(element) is not TKey elementKey)
+                {
+                    continue;
+                }
+
+                if (result.TryGetValue(elementKey, out var values))
+                {
+                    values.Add(element);
+                }
+                else
+                {
+                    result.Add(elementKey, new List<TElement> { element });
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// GroupBy + ToDictionary
+        /// </summary>
+        internal static Dictionary<TKey, List<TElement>> LinqGroupByToDictionary<TKey, TElement>(this IEnumerable<TElement> source, Func<TElement, TKey> keySelector)
+        {
+            return source.Where(s => keySelector.Invoke(s) != null)
+                         .GroupBy(keySelector)
+                         .ToDictionary(kv => kv.Key,
+                                       kv => kv.ToList());
         }
     }
 }
