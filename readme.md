@@ -38,6 +38,7 @@
 
 - System.Text.Json
   - ToJson()
+  - ParseJson\<T>()
 
 ## KueiExtensions.Microsoft.AspNetCore
 

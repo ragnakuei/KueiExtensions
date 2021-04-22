@@ -9,5 +9,10 @@ namespace KueiExtensions.System.Text.Json
         {
             return JsonSerializer.Serialize(obj, jsonSerializerOptions);
         }
+
+        public static T ParseJson<T>(this string json, JsonSerializerOptions jsonSerializerOptions = null)
+        {
+            return JsonSerializer.Deserialize<T>(json, jsonSerializerOptions);
+        }
     }
 }

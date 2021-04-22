@@ -146,7 +146,7 @@ namespace KueiExtensions
         /// <summary>
         /// GroupBy + ToDictionary
         /// </summary>
-        internal static Dictionary<TKey, List<TElement>> LinqGroupByToDictionary<TKey, TElement>(this IEnumerable<TElement> source, Func<TElement, TKey> keySelector)
+        public static Dictionary<TKey, List<TElement>> LinqGroupByToDictionary<TKey, TElement>(this IEnumerable<TElement> source, Func<TElement, TKey> keySelector)
         {
             return source.Where(s => keySelector.Invoke(s) != null)
                          .GroupBy(keySelector)
