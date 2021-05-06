@@ -22,7 +22,7 @@ namespace KueiExtensionsTests.Common.DictionaryExtensions
             B = 1,
         }
 
-        private Dictionary<TestKey?, TestValue?> _map
+        private Dictionary<TestKey, TestValue?> _map
             = new()
               {
                   [_testKeyA] = TestValue.A,

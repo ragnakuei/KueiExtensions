@@ -6,7 +6,7 @@ using Dapper;
 using KueiExtensions.Dapper;
 using NUnit.Framework;
 
-namespace KueiExtensionsTests.Dapper
+namespace KueiExtensionsTests.DapperTests
 {
     public class QueryMultipleBuilderTests
     {

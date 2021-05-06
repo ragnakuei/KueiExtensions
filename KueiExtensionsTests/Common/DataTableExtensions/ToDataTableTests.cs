@@ -33,8 +33,8 @@ namespace KueiExtensionsTests.Common.DataTableExtensions
 
             var expected = new[]
                            {
-                               new { ItemArray = new object?[] { 1, "A" } },
-                               new { ItemArray = new object?[] { 2, "B" } },
+                               new { ItemArray = new object[] { 1, "A" } },
+                               new { ItemArray = new object[] { 2, "B" } },
                            };
 
             actual.Should().BeEquivalentTo(expected);

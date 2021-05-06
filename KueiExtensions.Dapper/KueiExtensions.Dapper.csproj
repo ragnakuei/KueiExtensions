@@ -8,11 +8,15 @@
         <PackageProjectUrl>https://github.com/ragnakuei/KueiExtensions</PackageProjectUrl>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <LangVersion>latest</LangVersion>
-        <PackageVersion>1.0.1</PackageVersion>
+        <PackageVersion>1.0.2</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>
       <PackageReference Include="Dapper" Version="2.0.78" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\KueiExtensions\KueiExtensions.csproj" />
     </ItemGroup>
 
 </Project>

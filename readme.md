@@ -27,12 +27,17 @@
   - ToNullableGuid()
   - ToNullableDateTime()
   - IsNullOrWhiteSpace()
+  - ToNullableTimeSpan()
+  - ToNullableLong()
   
 ## KueiExtensions.Dapper
 
 - IDbConnection
   - MultipleResult().Read().Query()
   - MultipleResult\<T>().Read().Query()
+
+- TypeHandler
+  - VarcharToNullDecimalHandler
 
 ## KueiExtensions.System.Text.Json
 
