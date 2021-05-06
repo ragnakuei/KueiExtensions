@@ -144,6 +144,16 @@ namespace KueiExtensions
             return null;
         }
 
+        public static long? ToNullableLong(this string str)
+        {
+            if (long.TryParse(str, out var result))
+            {
+                return result;
+            }
+
+            return null;
+        }
+
         public static bool IsNullOrWhiteSpace(this string s)
         {
             return string.IsNullOrWhiteSpace(s);
