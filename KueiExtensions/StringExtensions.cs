@@ -108,6 +108,18 @@ namespace KueiExtensions
             return null;
         }
 
+        public static DateTime? ToNullableDateTime(this string      str,
+                                                   IFormatProvider? formatProvider = null,
+                                                   DateTimeStyles   dateTimeStyles = DateTimeStyles.None)
+        {
+            if (DateTime.TryParse(str, formatProvider, dateTimeStyles, out var result))
+            {
+                return result;
+            }
+
+            return null;
+        }
+
         public static bool IsNullOrWhiteSpace(this string s)
         {
             return string.IsNullOrWhiteSpace(s);
