@@ -120,6 +120,30 @@ namespace KueiExtensions
             return null;
         }
 
+        public static TimeSpan? ToNullableTimeSpan(this string      str,
+                                                   string           format,
+                                                   IFormatProvider? formatProvider = null,
+                                                   TimeSpanStyles   dateTimeStyles = TimeSpanStyles.None)
+        {
+            if (TimeSpan.TryParseExact(str, format: format, formatProvider, dateTimeStyles, out var result))
+            {
+                return result;
+            }
+
+            return null;
+        }
+
+        public static TimeSpan? ToNullableTimeSpan(this string      str,
+                                                   IFormatProvider? formatProvider = null)
+        {
+            if (TimeSpan.TryParse(str, formatProvider, out var result))
+            {
+                return result;
+            }
+
+            return null;
+        }
+
         public static bool IsNullOrWhiteSpace(this string s)
         {
             return string.IsNullOrWhiteSpace(s);
