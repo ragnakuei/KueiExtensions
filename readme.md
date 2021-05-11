@@ -44,6 +44,9 @@
 - System.Text.Json
   - ToJson()
   - ParseJson\<T>()
+    
+- System.Text.Json.JsonConverter
+  - StringNullableTimeSpanJsonConverter()
 
 ## KueiExtensions.Microsoft.AspNetCore
 
