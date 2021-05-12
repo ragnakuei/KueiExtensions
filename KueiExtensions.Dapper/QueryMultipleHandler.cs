@@ -34,5 +34,39 @@ namespace KueiExtensions.Dapper
 
             return result;
         }
+
+        public T Query(List<QueryMultipleBuilderWithFunc<T>.ReaderAction> readerActions)
+        {
+            var result = new T();
+
+            using (_dbConnection)
+            {
+                var reader = _dbConnection.QueryMultiple(_sql, _param);
+
+                foreach (var readerAction in readerActions)
+                {
+                    readerAction(ref result, reader);
+                }
+            }
+
+            return result;
+        }
+
+        public T Query(List<Func<T, SqlMapper.GridReader, T>> readerActions)
+        {
+            var result = new T();
+
+            using (_dbConnection)
+            {
+                var reader = _dbConnection.QueryMultiple(_sql, _param);
+
+                foreach (var readerAction in readerActions)
+                {
+                    result = readerAction.Invoke(result, reader);
+                }
+            }
+
+            return result;
+        }
     }
 }

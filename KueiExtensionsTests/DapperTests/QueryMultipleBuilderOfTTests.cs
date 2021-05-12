@@ -71,11 +71,12 @@ WHERE [a].[Name] = N'A'
             var dbConnection = DiFactory.GetService<IDbConnection>();
 
             var a = dbConnection.MultipleResult<A>(sql)
-                                .Read((boxDto, reader) => boxDto = reader.ReadFirstOrDefault<A>())
-                                .Read((boxDto, reader) => boxDto.Details = reader.Read<ADetail>().ToArray())
+                                .Read((ref A a, SqlMapper.GridReader reader) => a = reader.ReadFirstOrDefault<A>())
+                                .Read((ref A a, SqlMapper.GridReader reader) => a.Details = reader.Read<ADetail>().ToArray())
                                 .Query();
 
             Assert.True(a               != null);
+            Assert.True(a.Name          == "A");
             Assert.True(a.Details.Count == 3);
         }
 
@@ -83,21 +84,21 @@ WHERE [a].[Name] = N'A'
         public void QueryMultiple_有參數_匿名()
         {
             var sql = @"
-SELECT *
-FROM [dbo].[A]
-WHERE [Guid] = @Guid
-
-SELECT *
-FROM [dbo].[ADetail]
-WHERE [AGuid] = @Guid
-";
+        SELECT *
+        FROM [dbo].[A]
+        WHERE [Guid] = @Guid
+        
+        SELECT *
+        FROM [dbo].[ADetail]
+        WHERE [AGuid] = @Guid
+        ";
             var dbConnection = DiFactory.GetService<IDbConnection>();
 
             var param = new { Guid = _bGuid };
 
             var b = dbConnection.MultipleResult<A>(sql, param)
-                                .Read((boxDto, reader) => boxDto = reader.ReadFirstOrDefault<A>())
-                                .Read((boxDto, reader) => boxDto.Details = reader.Read<ADetail>().ToArray())
+                                .Read((ref A a, SqlMapper.GridReader reader) => a = reader.ReadFirstOrDefault<A>())
+                                .Read((ref A a, SqlMapper.GridReader reader) => a.Details = reader.Read<ADetail>().ToArray())
                                 .Query();
 
             Assert.True(b               != null);
@@ -108,22 +109,22 @@ WHERE [AGuid] = @Guid
         public void QueryMultiple_有參數_DynamicParameters_具名()
         {
             var sql = @"
-SELECT *
-FROM [dbo].[A]
-WHERE [Guid] = @Guid
-
-SELECT *
-FROM [dbo].[ADetail]
-WHERE [AGuid] = @Guid
-";
+        SELECT *
+        FROM [dbo].[A]
+        WHERE [Guid] = @Guid
+        
+        SELECT *
+        FROM [dbo].[ADetail]
+        WHERE [AGuid] = @Guid
+        ";
             var dbConnection = DiFactory.GetService<IDbConnection>();
 
             var param = new DynamicParameters();
             param.Add("Guid", _bGuid);
 
             var b = dbConnection.MultipleResult<A>(sql, param)
-                                .Read((boxDto, reader) => boxDto = reader.ReadFirstOrDefault<A>())
-                                .Read((boxDto, reader) => boxDto.Details = reader.Read<ADetail>().ToArray())
+                                .Read((ref A a, SqlMapper.GridReader reader) => a = reader.ReadFirstOrDefault<A>())
+                                .Read((ref A a, SqlMapper.GridReader reader) => a.Details = reader.Read<ADetail>().ToArray())
                                 .Query();
 
             Assert.True(b               != null);
@@ -134,22 +135,22 @@ WHERE [AGuid] = @Guid
         public void QueryMultiple_有參數_DynamicParameters_匿名()
         {
             var sql = @"
-SELECT *
-FROM [dbo].[A]
-WHERE [Guid] = @Guid
-
-SELECT *
-FROM [dbo].[ADetail]
-WHERE [AGuid] = @Guid
-";
+        SELECT *
+        FROM [dbo].[A]
+        WHERE [Guid] = @Guid
+        
+        SELECT *
+        FROM [dbo].[ADetail]
+        WHERE [AGuid] = @Guid
+        ";
             var dbConnection = DiFactory.GetService<IDbConnection>();
 
             var param = new DynamicParameters();
             param.AddDynamicParams(new { Guid = _bGuid });
 
             var b = dbConnection.MultipleResult<A>(sql, param)
-                                .Read((boxDto, reader) => boxDto = reader.ReadFirstOrDefault<A>())
-                                .Read((boxDto, reader) => boxDto.Details = reader.Read<ADetail>().ToArray())
+                                .Read((ref A a, SqlMapper.GridReader reader) => a = reader.ReadFirstOrDefault<A>())
+                                .Read((ref A a, SqlMapper.GridReader reader) => a.Details = reader.Read<ADetail>().ToArray())
                                 .Query();
 
             Assert.True(b               != null);

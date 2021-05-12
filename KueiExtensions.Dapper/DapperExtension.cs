@@ -11,9 +11,9 @@ namespace KueiExtensions.Dapper
             return new(dbConnection, sql, param);
         }
 
-        public static QueryMultipleBuilder<T> MultipleResult<T>(this IDbConnection dbConnection,
-                                                                string             sql,
-                                                                object             param = null) where T : class, new()
+        public static QueryMultipleBuilderWithFunc<T> MultipleResult<T>(this IDbConnection dbConnection,
+                                                                        string             sql,
+                                                                        object             param = null) where T : class, new()
         {
             return new(dbConnection, sql, param);
         }

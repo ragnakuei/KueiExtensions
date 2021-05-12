@@ -28,4 +28,30 @@ namespace KueiExtensions.Dapper
             return _handler.Query(_readerActions);
         }
     }
+
+    public class QueryMultipleBuilderWithFunc<T> where T : class, new()
+    {
+        private readonly QueryMultipleHandler<T> _handler;
+
+        public delegate void ReaderAction(ref T t, SqlMapper.GridReader reader);
+
+        private readonly List<ReaderAction> _readerActions = new();
+
+        internal QueryMultipleBuilderWithFunc(IDbConnection dbConnection, string sql, object param)
+        {
+            _handler = new QueryMultipleHandler<T>(dbConnection, sql, param);
+        }
+
+        public QueryMultipleBuilderWithFunc<T> Read(ReaderAction readerAction)
+        {
+            _readerActions.Add(readerAction);
+
+            return this;
+        }
+
+        public T Query()
+        {
+            return _handler.Query(_readerActions);
+        }
+    }
 }
