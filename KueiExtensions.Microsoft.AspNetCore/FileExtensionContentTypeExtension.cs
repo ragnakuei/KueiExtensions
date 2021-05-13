@@ -4,11 +4,16 @@ namespace KueiExtensions.Microsoft.AspNetCore
 {
     public static class FileExtensionContentTypeExtension
     {
-        public static string GetContentType(this string fileName)
+        public static string GetContentType(this string fileName, string defaultContentType = "application/octet-stream")
         {
             var provider = new FileExtensionContentTypeProvider();
-            provider.TryGetContentType(fileName, out var contentType);
-            return contentType;
+
+            if (provider.TryGetContentType(fileName, out var contentType))
+            {
+                return contentType;
+            }
+
+            return defaultContentType;
         }
     }
 }
