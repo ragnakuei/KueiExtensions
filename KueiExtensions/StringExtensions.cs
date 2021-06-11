@@ -154,7 +154,7 @@ namespace KueiExtensions
             return null;
         }
 
-        public static long? ToNullableInt(this string str)
+        public static int? ToNullableInt(this string str)
         {
             if (int.TryParse(str, out var result))
             {
