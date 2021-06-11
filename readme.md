@@ -29,6 +29,7 @@
   - IsNullOrWhiteSpace()
   - ToNullableTimeSpan()
   - ToNullableLong()
+  - ToNullableInt()
   
 ## KueiExtensions.Dapper
 
