@@ -75,9 +75,12 @@ WHERE [a].[Name] = N'C'
             var boxDto = new A();
 
             dbConnection.MultipleResult(sql)
-                        .Read(reader => boxDto         = reader.ReadFirstOrDefault<A>())
-                        .Read(reader => boxDto.Details = reader.Read<ADetail>().ToArray())
-                        .Query();
+                        .Query(reader =>
+                               {
+                                   boxDto         = reader.ReadFirstOrDefault<A>();
+                                   boxDto.Details = reader.Read<ADetail>().ToArray();
+                                   return boxDto;
+                               });
 
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 3);
@@ -102,9 +105,12 @@ WHERE [AGuid] = @Guid
             var boxDto = new A();
 
             dbConnection.MultipleResult(sql, param)
-                        .Read((reader) => boxDto         = reader.ReadFirstOrDefault<A>())
-                        .Read((reader) => boxDto.Details = reader.Read<ADetail>().ToArray())
-                        .Query();
+                        .Query(reader =>
+                               {
+                                   boxDto         = reader.ReadFirstOrDefault<A>();
+                                   boxDto.Details = reader.Read<ADetail>().ToArray();
+                                   return boxDto;
+                               });
 
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 2);
@@ -130,9 +136,12 @@ WHERE [AGuid] = @Guid
             var boxDto = new A();
 
             dbConnection.MultipleResult(sql, param)
-                        .Read((reader) => boxDto         = reader.ReadFirstOrDefault<A>())
-                        .Read((reader) => boxDto.Details = reader.Read<ADetail>().ToArray())
-                        .Query();
+                        .Query(reader =>
+                               {
+                                   boxDto         = reader.ReadFirstOrDefault<A>();
+                                   boxDto.Details = reader.Read<ADetail>().ToArray();
+                                   return boxDto;
+                               });
 
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 2);
@@ -158,9 +167,12 @@ WHERE [AGuid] = @Guid
             var boxDto = new A();
 
             dbConnection.MultipleResult(sql, param)
-                        .Read((reader) => boxDto         = reader.ReadFirstOrDefault<A>())
-                        .Read((reader) => boxDto.Details = reader.Read<ADetail>().ToArray())
-                        .Query();
+                        .Query(reader =>
+                               {
+                                   boxDto         = reader.ReadFirstOrDefault<A>();
+                                   boxDto.Details = reader.Read<ADetail>().ToArray();
+                                   return boxDto;
+                               });
 
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 2);
