@@ -6,6 +6,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <PackageProjectUrl>https://github.com/ragnakuei/KueiExtensions</PackageProjectUrl>
         <RepositoryType>https://github.com/ragnakuei/KueiExtensions</RepositoryType>
+        <PackageVersion>1.0.1</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>

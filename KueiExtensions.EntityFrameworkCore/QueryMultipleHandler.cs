@@ -26,30 +26,27 @@ namespace KueiExtensions.EntityFrameworkCore
 
         internal TResult Result<TResult>(Func<DbDataReader, TResult> readerFunc)
         {
-            using (_dbContext)
+            var dbConnection = _dbContext.Database.GetDbConnection();
+            var sqlCommand   = dbConnection.CreateCommand();
+            sqlCommand.CommandType = _sqlCommandType;
+            sqlCommand.CommandText = _sql;
+
+            foreach (var parameter in _parameters)
             {
-                var dbConnection = _dbContext.Database.GetDbConnection();
-                var sqlCommand   = dbConnection.CreateCommand();
-                sqlCommand.CommandType = _sqlCommandType;
-                sqlCommand.CommandText = _sql;
+                sqlCommand.Parameters.Add(parameter);
+            }
 
-                foreach (var parameter in _parameters)
+            try
+            {
+                dbConnection.Open();
+                using (var reader = sqlCommand.ExecuteReader())
                 {
-                    sqlCommand.Parameters.Add(parameter);
+                    return readerFunc.Invoke(reader);
                 }
-
-                try
-                {
-                    dbConnection.Open();
-                    using (var reader = sqlCommand.ExecuteReader())
-                    {
-                        return readerFunc.Invoke(reader);
-                    }
-                }
-                finally
-                {
-                    dbConnection.Close();
-                }
+            }
+            finally
+            {
+                dbConnection.Close();
             }
         }
     }
