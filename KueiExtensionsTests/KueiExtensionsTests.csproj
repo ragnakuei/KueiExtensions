@@ -17,6 +17,7 @@
     <ItemGroup>
       <ProjectReference Include="..\CreateDb\CreateDb.csproj" />
       <ProjectReference Include="..\KueiExtensions.Dapper\KueiExtensions.Dapper.csproj" />
+      <ProjectReference Include="..\KueiExtensions.EntityFrameworkCore\KueiExtensions.EntityFrameworkCore.csproj" />
       <ProjectReference Include="..\KueiExtensions.Microsoft.AspNetCore\KueiExtensions.Microsoft.AspNetCore.csproj" />
       <ProjectReference Include="..\KueiExtensions.System.Text.Json\KueiExtensions.System.Text.Json.csproj" />
       <ProjectReference Include="..\KueiExtensions\KueiExtensions.csproj" />
