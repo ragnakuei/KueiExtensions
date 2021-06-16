@@ -24,6 +24,12 @@ namespace DapperVsEfCore
 
             services.AddSingleton<IConfiguration>(provider => configuration);
 
+            services.AddSingleton<SeedDataService>();
+
+            services.AddTransient<DapperService>();
+
+            services.AddTransient<EfCoreService>();
+
             services.AddTransient<IDbConnection>(provider => new SqlConnection(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDbContext<TestDbContext>(options =>
@@ -33,6 +39,8 @@ namespace DapperVsEfCore
                                                      options.UseSqlServer(connectionString);
 
                                                      options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+
+                                                     
                                                  },
                                                  contextLifetime: ServiceLifetime.Transient,
                                                  optionsLifetime: ServiceLifetime.Transient);

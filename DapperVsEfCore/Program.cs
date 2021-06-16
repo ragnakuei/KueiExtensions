@@ -1,92 +1,35 @@
-﻿using System;
-using System.Data;
-using BenchmarkDotNet.Attributes;
+﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
-using CreateDb;
 
 namespace DapperVsEfCore
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            SeedData();
+            // var seedDataService = DiFactory.GetService<SeedDataService>();
+
+            // seedDataService.SeedData();
+
+            // new RunService().Run();
             var summary = BenchmarkRunner.Run<TestRunner>();
-            ClearSeedData();
-        }
 
-        private static void SeedData()
-        {
-            var testDbContext = DiFactory.GetService<TestDbContext>();
-
-            testDbContext.Database.EnsureCreated();
-
-            var aGuid = Guid.NewGuid();
-            testDbContext.A.Add(new A
-                                {
-                                    Guid = aGuid,
-                                    Name = "C",
-
-                                    Details = new[]
-                                              {
-                                                  new ADetail { Guid = Guid.NewGuid(), AGuid = aGuid, Name = "C1", },
-                                                  new ADetail { Guid = Guid.NewGuid(), AGuid = aGuid, Name = "C2", },
-                                                  new ADetail { Guid = Guid.NewGuid(), AGuid = aGuid, Name = "C3", },
-                                              }
-                                });
-
-            var dGuid = Guid.NewGuid();
-            testDbContext.A.Add(new A
-                                {
-                                    Guid = dGuid,
-                                    Name = "D",
-
-                                    Details = new[]
-                                              {
-                                                  new ADetail { Guid = Guid.NewGuid(), AGuid = dGuid, Name = "D1", },
-                                                  new ADetail { Guid = Guid.NewGuid(), AGuid = dGuid, Name = "D2", },
-                                              }
-                                });
-
-            testDbContext.SaveChanges();
-        }
-
-        private static void ClearSeedData()
-        {
-            var testDbContext = DiFactory.GetService<TestDbContext>();
-            testDbContext.Database.EnsureDeleted();
-        }
-
-        public class TestRunner
-        {
-            [Benchmark]
-            public void Dapper() => new DapperService().Run();
-
-            [Benchmark]
-            public void EfCore() => new EfCoreService().Run();
+            // seedDataService.ClearSeedData();
         }
     }
 
-    internal class EfCoreService
+    public class TestRunner
     {
-        private IDbConnection _sqlConnection;
+        [Benchmark]
+        public void Dapper() => DiFactory.GetService<DapperService>().Run();
 
-        public EfCoreService()
-        {
-            _sqlConnection = DiFactory.GetService<IDbConnection>();
-        }
+        [Benchmark]
+        public void EfCore_FromSqlRaw() => DiFactory.GetService<EfCoreService>().FromSqlRaw_SqlParameter();
 
-        public void Run()
-        {
+        [Benchmark]
+        public void EfCore_FromSqlRaw_Where() => DiFactory.GetService<EfCoreService>().FromSqlRaw_Where();
 
-        }
-    }
-
-    internal class DapperService
-    {
-        public void Run()
-        {
-            throw new NotImplementedException();
-        }
+        [Benchmark]
+        public void EfCore_QueryMultiple() => DiFactory.GetService<EfCoreService>().QueryMultiple();
     }
 }
