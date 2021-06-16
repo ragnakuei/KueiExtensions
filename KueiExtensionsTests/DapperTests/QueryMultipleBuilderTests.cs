@@ -72,15 +72,13 @@ WHERE [a].[Name] = N'C'
 ";
             var dbConnection = DiFactory.GetService<IDbConnection>();
 
-            var boxDto = new A();
-
-            dbConnection.MultipleResult(sql)
-                        .Query(reader =>
-                               {
-                                   boxDto         = reader.ReadFirstOrDefault<A>();
-                                   boxDto.Details = reader.Read<ADetail>().ToArray();
-                                   return boxDto;
-                               });
+            var boxDto = dbConnection.MultipleResult(sql)
+                                     .Query(reader =>
+                                            {
+                                                var readerResult = reader.ReadFirstOrDefault<A>();
+                                                readerResult.Details = reader.Read<ADetail>().ToArray();
+                                                return readerResult;
+                                            });
 
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 3);
@@ -102,15 +100,13 @@ WHERE [AGuid] = @Guid
 
             var param = new { Guid = _dGuid };
 
-            var boxDto = new A();
-
-            dbConnection.MultipleResult(sql, param)
-                        .Query(reader =>
-                               {
-                                   boxDto         = reader.ReadFirstOrDefault<A>();
-                                   boxDto.Details = reader.Read<ADetail>().ToArray();
-                                   return boxDto;
-                               });
+            var boxDto = dbConnection.MultipleResult(sql, param)
+                                     .Query(reader =>
+                                            {
+                                                var readerResult = reader.ReadFirstOrDefault<A>();
+                                                readerResult.Details = reader.Read<ADetail>().ToArray();
+                                                return readerResult;
+                                            });
 
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 2);
@@ -133,15 +129,13 @@ WHERE [AGuid] = @Guid
             var param = new DynamicParameters();
             param.Add("Guid", _dGuid);
 
-            var boxDto = new A();
-
-            dbConnection.MultipleResult(sql, param)
-                        .Query(reader =>
-                               {
-                                   boxDto         = reader.ReadFirstOrDefault<A>();
-                                   boxDto.Details = reader.Read<ADetail>().ToArray();
-                                   return boxDto;
-                               });
+            var boxDto = dbConnection.MultipleResult(sql, param)
+                                     .Query(reader =>
+                                            {
+                                                var readerResult = reader.ReadFirstOrDefault<A>();
+                                                readerResult.Details = reader.Read<ADetail>().ToArray();
+                                                return readerResult;
+                                            });
 
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 2);
@@ -164,15 +158,13 @@ WHERE [AGuid] = @Guid
             var param = new DynamicParameters();
             param.AddDynamicParams(new { Guid = _dGuid });
 
-            var boxDto = new A();
-
-            dbConnection.MultipleResult(sql, param)
-                        .Query(reader =>
-                               {
-                                   boxDto         = reader.ReadFirstOrDefault<A>();
-                                   boxDto.Details = reader.Read<ADetail>().ToArray();
-                                   return boxDto;
-                               });
+            var boxDto = dbConnection.MultipleResult(sql, param)
+                                     .Query(reader =>
+                                            {
+                                                var readerResult = reader.ReadFirstOrDefault<A>();
+                                                readerResult.Details = reader.Read<ADetail>().ToArray();
+                                                return readerResult;
+                                            });
 
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 2);
