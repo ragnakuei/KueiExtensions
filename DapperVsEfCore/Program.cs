@@ -7,22 +7,19 @@ namespace DapperVsEfCore
     {
         static void Main(string[] args)
         {
-            // var seedDataService = DiFactory.GetService<SeedDataService>();
+            var seedDataService = DiFactory.GetService<SeedDataService>();
 
-            // seedDataService.SeedData();
+            seedDataService.SeedData();
 
             // new RunService().Run();
             var summary = BenchmarkRunner.Run<TestRunner>();
 
-            // seedDataService.ClearSeedData();
+            seedDataService.ClearSeedData();
         }
     }
 
     public class TestRunner
     {
-        [Benchmark]
-        public void Dapper() => DiFactory.GetService<DapperService>().Run();
-
         [Benchmark]
         public void EfCore_FromSqlRaw() => DiFactory.GetService<EfCoreService>().FromSqlRaw_SqlParameter();
 
@@ -31,5 +28,8 @@ namespace DapperVsEfCore
 
         [Benchmark]
         public void EfCore_QueryMultiple() => DiFactory.GetService<EfCoreService>().QueryMultiple();
+
+        [Benchmark]
+        public void Dapper() => DiFactory.GetService<DapperService>().Run();
     }
 }
