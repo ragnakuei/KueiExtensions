@@ -78,7 +78,7 @@ namespace KueiExtensionsTests.Common.IEnumerableOfTExtensions
         [Test]
         public void LinqGroupByToDictionary_Case01()
         {
-            var actual = KueiExtensions.IEnumerableOfTExtensions.LinqGroupByToDictionary(GetTests(), t => t.ParentId);
+            var actual = KueiExtensions.IEnumerableOfTExtensions.GroupByToDictionary(GetTests(), t => t.ParentId);
 
             var expected = new Dictionary<int?, List<Test>>
                            {
@@ -101,7 +101,7 @@ namespace KueiExtensionsTests.Common.IEnumerableOfTExtensions
         [Test]
         public void LinqGroupByToDictionary_Case02()
         {
-            var actual = GetTests().LinqGroupByToDictionary(t => t.ParentId);
+            var actual = GetTests().GroupByToDictionary(t => t.ParentId);
 
             var expected = new Dictionary<int?, List<Test>>
                            {
