@@ -31,8 +31,8 @@ WHERE [AGuid] = @Guid
 ";
             var param = new { Guid = _seedDataService.AGuid };
 
-            var boxDto = _dbConnection.MultipleResult(sql, param)
-                                      .Query(reader =>
+            var boxDto = _dbConnection.QueryMultipleResult(sql, param)
+                                      .Result(reader =>
                                              {
                                                  var readerResult = reader.ReadFirstOrDefault<A>();
                                                  if (readerResult != null)

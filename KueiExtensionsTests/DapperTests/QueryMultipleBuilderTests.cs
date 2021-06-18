@@ -72,8 +72,8 @@ WHERE [a].[Name] = N'C'
 ";
             var dbConnection = DiFactory.GetService<IDbConnection>();
 
-            var boxDto = dbConnection.MultipleResult(sql)
-                                     .Query(reader =>
+            var boxDto = dbConnection.QueryMultipleResult(sql)
+                                     .Result(reader =>
                                             {
                                                 var readerResult = reader.ReadFirstOrDefault<A>();
                                                 readerResult.Details = reader.Read<ADetail>().ToArray();
@@ -100,8 +100,8 @@ WHERE [AGuid] = @Guid
 
             var param = new { Guid = _dGuid };
 
-            var boxDto = dbConnection.MultipleResult(sql, param)
-                                     .Query(reader =>
+            var boxDto = dbConnection.QueryMultipleResult(sql, param)
+                                     .Result(reader =>
                                             {
                                                 var readerResult = reader.ReadFirstOrDefault<A>();
                                                 readerResult.Details = reader.Read<ADetail>().ToArray();
@@ -129,8 +129,8 @@ WHERE [AGuid] = @Guid
             var param = new DynamicParameters();
             param.Add("Guid", _dGuid);
 
-            var boxDto = dbConnection.MultipleResult(sql, param)
-                                     .Query(reader =>
+            var boxDto = dbConnection.QueryMultipleResult(sql, param)
+                                     .Result(reader =>
                                             {
                                                 var readerResult = reader.ReadFirstOrDefault<A>();
                                                 readerResult.Details = reader.Read<ADetail>().ToArray();
@@ -158,8 +158,8 @@ WHERE [AGuid] = @Guid
             var param = new DynamicParameters();
             param.AddDynamicParams(new { Guid = _dGuid });
 
-            var boxDto = dbConnection.MultipleResult(sql, param)
-                                     .Query(reader =>
+            var boxDto = dbConnection.QueryMultipleResult(sql, param)
+                                     .Result(reader =>
                                             {
                                                 var readerResult = reader.ReadFirstOrDefault<A>();
                                                 readerResult.Details = reader.Read<ADetail>().ToArray();

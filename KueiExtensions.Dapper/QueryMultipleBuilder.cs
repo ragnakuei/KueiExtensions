@@ -14,7 +14,7 @@ namespace KueiExtensions.Dapper
             _handler = new QueryMultipleHandler(dbConnection, sql, param);
         }
 
-        public T Query<T>(Func<SqlMapper.GridReader, T> readerFunc)
+        public T Result<T>(Func<SqlMapper.GridReader, T> readerFunc)
         {
             return _handler.Query(readerFunc);
         }

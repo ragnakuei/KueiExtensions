@@ -4,7 +4,7 @@ namespace KueiExtensions.Dapper
 {
     public static class DapperExtension
     {
-        public static QueryMultipleBuilder MultipleResult(this IDbConnection dbConnection,
+        public static QueryMultipleBuilder QueryMultipleResult(this IDbConnection dbConnection,
                                                           string             sql,
                                                           object             param = null)
         {
