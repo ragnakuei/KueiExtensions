@@ -117,5 +117,48 @@ WHERE [a].[Name] = N'C'
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 2);
         }
+
+        [Test]
+        public void QueryMultiple_無參數_TranslateFirstOrDefault_查不到資料()
+        {
+            var testDbContext = DiFactory.GetService<TestDbContext>();
+
+            var sql = @"
+SELECT *
+FROM [dbo].[A]
+WHERE [Name] = N'Z'
+";
+
+
+            var boxDto = testDbContext.QueryMultiple(sql)
+                                      .Result(reader =>
+                                              {
+                                                  var tempResult = reader.TranslateFirstOrDefault<A>();
+                                                  return tempResult;
+                                              });
+
+            Assert.True(boxDto == null);
+        }
+
+        [Test]
+        public void QueryMultiple_無參數_Translate_查不到資料()
+        {
+            var testDbContext = DiFactory.GetService<TestDbContext>();
+
+            var sql = @"
+SELECT *
+FROM [dbo].[A]
+WHERE [Name] = N'Z'
+";
+
+            var boxDto = testDbContext.QueryMultiple(sql)
+                                      .Result(reader =>
+                                              {
+                                                  var tempResult = reader.Translate<A>().ToArray();
+                                                  return tempResult;
+                                              });
+
+            Assert.True(boxDto.Length == 0);
+        }
     }
 }

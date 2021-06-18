@@ -35,19 +35,34 @@ namespace KueiExtensions.EntityFrameworkCore
                     continue;
                 }
 
-                var dbValue = record[prop.Name];
-                if (dbValue is DBNull) continue;
-                if (prop.PropertyType.IsConstructedGenericType && prop.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                try
                 {
-                    var baseType  = prop.PropertyType.GetGenericArguments()[0];
-                    var baseValue = Convert.ChangeType(dbValue, baseType);
-                    var value     = Activator.CreateInstance(prop.PropertyType, baseValue);
-                    prop.SetValue(t, value);
+                    var a = record.FieldCount;
+
+                    var dbValue = record[prop.Name];
+
+                    if (dbValue is DBNull)
+                    {
+                        continue;
+                    }
+
+                    if (prop.PropertyType.IsConstructedGenericType
+                     && prop.PropertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+                    {
+                        var baseType  = prop.PropertyType.GetGenericArguments()[0];
+                        var baseValue = Convert.ChangeType(dbValue, baseType);
+                        var value     = Activator.CreateInstance(prop.PropertyType, baseValue);
+                        prop.SetValue(t, value);
+                    }
+                    else
+                    {
+                        var value = Convert.ChangeType(dbValue, prop.PropertyType);
+                        prop.SetValue(t, value);
+                    }
                 }
-                else
+                catch (Exception)
                 {
-                    var value = Convert.ChangeType(dbValue, prop.PropertyType);
-                    prop.SetValue(t, value);
+                    return default;
                 }
             }
 
