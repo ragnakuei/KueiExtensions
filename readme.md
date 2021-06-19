@@ -34,7 +34,8 @@
 ## KueiExtensions.Dapper
 
 - IDbConnection
-  - MultipleResult().Query\<T>()
+  - QueryMultipleResult().Result\<T>()
+  - QueryMultipleResult().Result()
 
 - TypeHandler
   - VarcharToNullDecimalHandler
@@ -43,6 +44,7 @@
 
  - DbContext
    - QueryMultiple().Result\<T>()
+   - QueryMultiple().Result()
 
 ## KueiExtensions.System.Text.Json
 
