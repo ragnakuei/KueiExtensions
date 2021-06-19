@@ -22,5 +22,10 @@ namespace KueiExtensions.EntityFrameworkCore
         {
             return _handler.Result(readerFunc);
         }
+
+        public void Result(Action<DbDataReader> readerAction)
+        {
+            _handler.Result(readerAction);
+        }
     }
 }

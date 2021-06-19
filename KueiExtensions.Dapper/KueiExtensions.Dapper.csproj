@@ -8,7 +8,7 @@
         <PackageProjectUrl>https://github.com/ragnakuei/KueiExtensions</PackageProjectUrl>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <LangVersion>latest</LangVersion>
-        <PackageVersion>1.0.6</PackageVersion>
+        <PackageVersion>1.0.7</PackageVersion>
     </PropertyGroup>
 
     <ItemGroup>

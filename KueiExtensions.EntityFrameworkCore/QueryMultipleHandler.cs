@@ -49,5 +49,31 @@ namespace KueiExtensions.EntityFrameworkCore
                 dbConnection.Close();
             }
         }
+
+        internal void Result(Action<DbDataReader> readerAction)
+        {
+            var dbConnection = _dbContext.Database.GetDbConnection();
+            var sqlCommand   = dbConnection.CreateCommand();
+            sqlCommand.CommandType = _sqlCommandType;
+            sqlCommand.CommandText = _sql;
+
+            foreach (var parameter in _parameters)
+            {
+                sqlCommand.Parameters.Add(parameter);
+            }
+
+            try
+            {
+                dbConnection.Open();
+                using (var reader = sqlCommand.ExecuteReader())
+                {
+                    readerAction.Invoke(reader);
+                }
+            }
+            finally
+            {
+                dbConnection.Close();
+            }
+        }
     }
 }

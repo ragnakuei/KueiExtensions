@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace KueiExtensionsTests.EntityFrameworkCoreTests
 {
-    public class QueryMultipleBuilderTests
+    public class QueryMultiple_Result_Func_Tests
     {
         private Guid _dGuid;
 

@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace KueiExtensionsTests.DapperTests
 {
-    public class QueryMultipleBuilderTests
+    public class QueryMultipleResult_Result_Action_Tests
     {
         private Guid _dGuid;
 
@@ -72,13 +72,14 @@ WHERE [a].[Name] = N'C'
 ";
             var dbConnection = DiFactory.GetService<IDbConnection>();
 
-            var boxDto = dbConnection.QueryMultipleResult(sql)
-                                     .Result(reader =>
-                                            {
-                                                var readerResult = reader.ReadFirstOrDefault<A>();
-                                                readerResult.Details = reader.Read<ADetail>().ToArray();
-                                                return readerResult;
-                                            });
+            var boxDto = new A();
+
+            dbConnection.QueryMultipleResult(sql)
+                        .Result(reader =>
+                                {
+                                    boxDto         = reader.ReadFirstOrDefault<A>();
+                                    boxDto.Details = reader.Read<ADetail>().ToArray();
+                                });
 
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 3);
@@ -100,13 +101,14 @@ WHERE [AGuid] = @Guid
 
             var param = new { Guid = _dGuid };
 
-            var boxDto = dbConnection.QueryMultipleResult(sql, param)
-                                     .Result(reader =>
-                                            {
-                                                var readerResult = reader.ReadFirstOrDefault<A>();
-                                                readerResult.Details = reader.Read<ADetail>().ToArray();
-                                                return readerResult;
-                                            });
+            var boxDto = new A();
+
+            dbConnection.QueryMultipleResult(sql, param)
+                        .Result(reader =>
+                                {
+                                    boxDto         = reader.ReadFirstOrDefault<A>();
+                                    boxDto.Details = reader.Read<ADetail>().ToArray();
+                                });
 
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 2);
@@ -129,13 +131,14 @@ WHERE [AGuid] = @Guid
             var param = new DynamicParameters();
             param.Add("Guid", _dGuid);
 
-            var boxDto = dbConnection.QueryMultipleResult(sql, param)
-                                     .Result(reader =>
-                                            {
-                                                var readerResult = reader.ReadFirstOrDefault<A>();
-                                                readerResult.Details = reader.Read<ADetail>().ToArray();
-                                                return readerResult;
-                                            });
+            var boxDto = new A();
+
+            dbConnection.QueryMultipleResult(sql, param)
+                        .Result(reader =>
+                                {
+                                    boxDto         = reader.ReadFirstOrDefault<A>();
+                                    boxDto.Details = reader.Read<ADetail>().ToArray();
+                                });
 
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 2);
@@ -158,13 +161,14 @@ WHERE [AGuid] = @Guid
             var param = new DynamicParameters();
             param.AddDynamicParams(new { Guid = _dGuid });
 
-            var boxDto = dbConnection.QueryMultipleResult(sql, param)
-                                     .Result(reader =>
-                                            {
-                                                var readerResult = reader.ReadFirstOrDefault<A>();
-                                                readerResult.Details = reader.Read<ADetail>().ToArray();
-                                                return readerResult;
-                                            });
+            var boxDto = new A();
+
+            dbConnection.QueryMultipleResult(sql, param)
+                        .Result(reader =>
+                                {
+                                    boxDto         = reader.ReadFirstOrDefault<A>();
+                                    boxDto.Details = reader.Read<ADetail>().ToArray();
+                                });
 
             Assert.True(boxDto               != null);
             Assert.True(boxDto.Details.Count == 2);

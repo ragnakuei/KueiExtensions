@@ -16,7 +16,12 @@ namespace KueiExtensions.Dapper
 
         public T Result<T>(Func<SqlMapper.GridReader, T> readerFunc)
         {
-            return _handler.Query(readerFunc);
+            return _handler.Result(readerFunc);
+        }
+
+        public void Result(Action<SqlMapper.GridReader> readerAction)
+        {
+            _handler.Result(readerAction);
         }
     }
 }
