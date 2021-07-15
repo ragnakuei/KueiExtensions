@@ -20,22 +20,16 @@ namespace KueiExtensions.Dapper
 
         internal T Result<T>(Func<SqlMapper.GridReader, T> readerFunc)
         {
-            using (_dbConnection)
-            {
-                var reader = _dbConnection.QueryMultiple(_sql, _param);
+            var reader = _dbConnection.QueryMultiple(_sql, _param);
 
-                return readerFunc.Invoke(reader);
-            }
+            return readerFunc.Invoke(reader);
         }
 
         internal void Result(Action<SqlMapper.GridReader> readerAction)
         {
-            using (_dbConnection)
-            {
-                var reader = _dbConnection.QueryMultiple(_sql, _param);
+            var reader = _dbConnection.QueryMultiple(_sql, _param);
 
-                readerAction.Invoke(reader);
-            }
+            readerAction.Invoke(reader);
         }
     }
 }
