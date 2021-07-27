@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>KueiExtensions</PackageId>
     <Authors>Kuei</Authors>
     <Company>RagnaKuei</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>1.0.15</PackageVersion>
+    <PackageVersion>1.0.16</PackageVersion>
     <PackageProjectUrl>https://github.com/ragnakuei/KueiExtensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ragnakuei/KueiExtensions</RepositoryUrl>
     <LangVersion>latest</LangVersion>

@@ -59,7 +59,8 @@ namespace KueiExtensions
         public static string Utf8Decode(this string s)
         {
             // 以 \u 拆分成各個字
-            var bytes = s.Split(@"\u")
+            var bytes = s.Replace(@"\u", "-")
+                         .Split('-')
                          .Where(p => !string.IsNullOrWhiteSpace(p))
                          .SelectMany(word =>
                                      {
@@ -95,10 +96,10 @@ namespace KueiExtensions
             return null;
         }
 
-        public static DateTime? ToNullableDateTime(this string      str,
-                                                   string           format,
-                                                   IFormatProvider? formatProvider = null,
-                                                   DateTimeStyles   dateTimeStyles = DateTimeStyles.None)
+        public static DateTime? ToNullableDateTime(this string     str,
+                                                   string          format,
+                                                   IFormatProvider formatProvider = null,
+                                                   DateTimeStyles  dateTimeStyles = DateTimeStyles.None)
         {
             if (DateTime.TryParseExact(str, format: format, formatProvider, dateTimeStyles, out var result))
             {
@@ -108,9 +109,9 @@ namespace KueiExtensions
             return null;
         }
 
-        public static DateTime? ToNullableDateTime(this string      str,
-                                                   IFormatProvider? formatProvider = null,
-                                                   DateTimeStyles   dateTimeStyles = DateTimeStyles.None)
+        public static DateTime? ToNullableDateTime(this string     str,
+                                                   IFormatProvider formatProvider = null,
+                                                   DateTimeStyles  dateTimeStyles = DateTimeStyles.None)
         {
             if (DateTime.TryParse(str, formatProvider, dateTimeStyles, out var result))
             {
@@ -120,10 +121,10 @@ namespace KueiExtensions
             return null;
         }
 
-        public static TimeSpan? ToNullableTimeSpan(this string      str,
-                                                   string           format,
-                                                   IFormatProvider? formatProvider = null,
-                                                   TimeSpanStyles   dateTimeStyles = TimeSpanStyles.None)
+        public static TimeSpan? ToNullableTimeSpan(this string     str,
+                                                   string          format,
+                                                   IFormatProvider formatProvider = null,
+                                                   TimeSpanStyles  dateTimeStyles = TimeSpanStyles.None)
         {
             if (TimeSpan.TryParseExact(str, format: format, formatProvider, dateTimeStyles, out var result))
             {
@@ -133,8 +134,8 @@ namespace KueiExtensions
             return null;
         }
 
-        public static TimeSpan? ToNullableTimeSpan(this string      str,
-                                                   IFormatProvider? formatProvider = null)
+        public static TimeSpan? ToNullableTimeSpan(this string     str,
+                                                   IFormatProvider formatProvider = null)
         {
             if (TimeSpan.TryParse(str, formatProvider, out var result))
             {

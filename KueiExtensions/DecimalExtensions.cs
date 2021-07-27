@@ -24,7 +24,7 @@ namespace KueiExtensions
             var fixValueStr = fixValue.ToString();
 
             var fillDigits = fixValueStr.Contains(".")
-                                 ? digits - fixValueStr.Split(".")[1].Length
+                                 ? digits - fixValueStr.Split('.')[1].Length
                                  : digits;
 
             // 0 * 1.00m 還是 0，不符合預期
