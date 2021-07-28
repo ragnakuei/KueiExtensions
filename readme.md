@@ -16,7 +16,10 @@
   - StDev()
 
 - Dictionary\<TKey?, TValue?>()
-  - .GetValueOrNull()
+  - GetValueOrNull()
+
+- ConcurrentDictionary\<TKey?, TValue?>()
+  - GetValueOrDefault()
 
 - String
   - Join()
