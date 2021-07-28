@@ -11,11 +11,6 @@ namespace KueiExtensions.Dapper.Generator
     {
         private static ConcurrentDictionary<Type, Dictionary<string, PropertyInfoDto>> _typeStore = new();
 
-        public Dictionary<string, PropertyInfoDto> GetProperties<T>()
-        {
-            return GetProperties(typeof(T));
-        }
-
         public Dictionary<string, PropertyInfoDto> GetProperties(Type type)
         {
             var result = _typeStore.GetValueOrDefault(type);
@@ -58,11 +53,6 @@ namespace KueiExtensions.Dapper.Generator
             _typeStore[type] = result;
 
             return result;
-        }
-
-        private static string GetCacheKey(Type type)
-        {
-            return $"PropertyInfo_{type?.Name}";
         }
     }
 }
