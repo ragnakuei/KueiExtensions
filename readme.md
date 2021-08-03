@@ -33,6 +33,8 @@
   - ToNullableTimeSpan()
   - ToNullableLong()
   - ToNullableInt()
+  - TrimStart()
+  - TrimEnd()
   
 ## KueiExtensions.Dapper
 

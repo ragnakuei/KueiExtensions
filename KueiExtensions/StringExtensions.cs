@@ -169,5 +169,33 @@ namespace KueiExtensions
         {
             return string.IsNullOrWhiteSpace(s);
         }
+
+        public static string TrimStart(this string s, string trimKeyword, StringComparison comparison = StringComparison.CurrentCultureIgnoreCase)
+        {
+            if (s.StartsWith(trimKeyword, comparison))
+            {
+                var trimLength = trimKeyword.Length;
+
+                var result = s.Substring(trimLength);
+
+                return result;
+            }
+
+            return s;
+        }
+
+        public static string TrimEnd(this string s, string trimKeyword, StringComparison comparison = StringComparison.CurrentCultureIgnoreCase)
+        {
+            if (s.EndsWith(trimKeyword, comparison))
+            {
+                var keepLength = s.Length - trimKeyword.Length;
+
+                var result = s.Substring(0, keepLength);
+
+                return result;
+            }
+
+            return s;
+        }
     }
 }
