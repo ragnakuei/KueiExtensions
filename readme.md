@@ -7,6 +7,7 @@
   - Aggregate()
   - ToPaged()
   - GroupByToDictionary()
+  - ToHashSet45()
 
 - Decimal
   - ToFix()

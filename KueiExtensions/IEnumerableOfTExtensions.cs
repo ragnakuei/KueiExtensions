@@ -142,5 +142,10 @@ namespace KueiExtensions
 
             return result;
         }
+
+        public static HashSet<TElement> ToHashSet45<TElement>(this IEnumerable<TElement> source)
+        {
+            return new HashSet<TElement>(source);
+        }
     }
 }
