@@ -147,5 +147,20 @@ namespace KueiExtensions
         {
             return new HashSet<TElement>(source);
         }
+
+        public static IEnumerable<T> ExceptNoDistinct<T>(this IEnumerable<T>  source,
+                                                         IEnumerable<T>       target,
+                                                         IEqualityComparer<T> equalityComparer = null)
+        {
+            var targetDistinct = new HashSet<T>(target);
+
+            foreach (var sItem in source)
+            {
+                if (targetDistinct.Contains(sItem, equalityComparer) == false)
+                {
+                    yield return sItem;
+                }
+            }
+        }
     }
 }

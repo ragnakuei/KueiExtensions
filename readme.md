@@ -8,6 +8,7 @@
   - ToPaged()
   - GroupByToDictionary()
   - ToHashSet45()
+  - ExceptNoDistinct()
 
 - Decimal
   - ToFix()
