@@ -100,20 +100,31 @@ namespace KueiExtensions
         /// <summary>
         /// 將集合資料分頁
         /// </summary>
-        public static IEnumerable<IEnumerable<T>> ToPaged<T>(this IEnumerable<T> source, int pageSize = 99)
+        public static IEnumerable<IEnumerable<T>> ToPaged<T>(this IEnumerable<T> source, int size = 99)
         {
             if (source == null)
             {
-                return Enumerable.Empty<IEnumerable<T>>();
+                yield return Enumerable.Empty<T>();
+                yield break;
             }
 
-            return source.Select((v, i) => new
-                                           {
-                                               index = i,
-                                               value = v
-                                           })
-                         .GroupBy(a => a.index / pageSize)
-                         .Select(d => d.Select(d2 => d2.value));
+            var index      = 0;
+            var chunkItems = new T[size];
+            foreach (var item in source)
+            {
+                if (index == size)
+                {
+                    yield return chunkItems;
+
+                    chunkItems = new T[size];
+                    index      = 0;
+                }
+
+                chunkItems[index++] = item;
+            }
+
+            // Tak 用來去掉因為 new T[size] 額外產生的不必要 element
+            yield return chunkItems.Take(index);
         }
 
         /// <summary>
