@@ -35,18 +35,18 @@ namespace KueiExtensions
         /// </summary>
         /// <param name="source"></param>
         /// <param name="func">第三個引數是 Index，從 1 開始執行</param>
-        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TElement"></typeparam>
         /// <returns></returns>
-        public static TSource Aggregate<TSource>(this IEnumerable<TSource>            source,
-                                                 Func<TSource, TSource, int, TSource> func)
+        public static TElement Aggregate<TElement>(this IEnumerable<TElement>              source,
+                                                   Func<TElement, TElement, int, TElement> func)
         {
             var index = 1;
 
-            var result = source.Aggregate((seed, item) =>
+            var result = source.Aggregate((accumulate, item) =>
                                           {
-                                              seed = func.Invoke(seed, item, index);
+                                              accumulate = func.Invoke(accumulate, item, index);
                                               index++;
-                                              return seed;
+                                              return accumulate;
                                           });
 
             return result;
@@ -58,12 +58,12 @@ namespace KueiExtensions
         /// <param name="source"></param>
         /// <param name="seed"></param>
         /// <param name="func">第三個引數是 Index，從 0 開始執行</param>
-        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TElement"></typeparam>
         /// <typeparam name="TAccumulate"></typeparam>
         /// <returns></returns>
-        public static TAccumulate Aggregate<TSource, TAccumulate>(this IEnumerable<TSource>                    source,
-                                                                  TAccumulate                                  seed,
-                                                                  Func<TAccumulate, TSource, int, TAccumulate> func)
+        public static TAccumulate Aggregate<TElement, TAccumulate>(this IEnumerable<TElement>                    source,
+                                                                   TAccumulate                                   seed,
+                                                                   Func<TAccumulate, TElement, int, TAccumulate> func)
         {
             var index = 0;
 
@@ -86,13 +86,106 @@ namespace KueiExtensions
             var index = 0;
 
             var result = source.Aggregate(seed: seed,
-                                          func: (seed, item) =>
+                                          func: (accumulate, item) =>
                                                 {
-                                                    seed = func.Invoke(seed, item, index);
+                                                    accumulate = func.Invoke(accumulate, item, index);
                                                     index++;
-                                                    return seed;
+                                                    return accumulate;
                                                 },
-                                          resultSelector: seed => resultSelector.Invoke(seed));
+                                          resultSelector: accumulate => resultSelector.Invoke(accumulate));
+
+            return result;
+        }
+
+        public static TElement Aggregate<TElement>(this IEnumerable<TElement>                                    source,
+                                                   Func<TElement, TElement, (TElement accumulate, bool isBreak)> func)
+        {
+            var accumulate = source.FirstOrDefault();
+
+            foreach (var item in source.Skip(1))
+            {
+                var iteratorResult = func.Invoke(accumulate, item);
+
+                accumulate = iteratorResult.accumulate;
+
+                if (iteratorResult.isBreak)
+                {
+                    break;
+                }
+            }
+
+            return accumulate;
+        }
+
+        public static TResult Aggregate<TElement, TResult>(this IEnumerable<TElement>                                    source,
+                                                           Func<TElement, TElement, (TElement accumulate, bool isBreak)> func,
+                                                           Func<TElement, TResult>                                       resultSelector)
+        {
+            var accumulate = source.FirstOrDefault();
+
+            foreach (var item in source.Skip(1))
+            {
+                var iteratorResult = func.Invoke(accumulate, item);
+
+                accumulate = iteratorResult.accumulate;
+
+                if (iteratorResult.isBreak)
+                {
+                    break;
+                }
+            }
+
+            var result = resultSelector.Invoke(accumulate);
+
+            return result;
+        }
+
+        public static TResult Aggregate<TElement, TAccumulate, TResult>(this IEnumerable<TElement>                                          source,
+                                                                        TAccumulate                                                         seed,
+                                                                        Func<TAccumulate, TElement, int, (TAccumulate accumulate, bool isBreak)> func,
+                                                                        Func<TAccumulate, TResult>                                          resultSelector)
+        {
+            var index = 0;
+            var accumulate = seed;
+
+            foreach (var item in source)
+            {
+                var iteratorResult = func.Invoke(accumulate, item, index);
+
+                accumulate = iteratorResult.accumulate;
+                index++;
+
+                if (iteratorResult.isBreak)
+                {
+                    break;
+                }
+            }
+
+            var result = resultSelector.Invoke(accumulate);
+
+            return result;
+        }
+
+        public static TResult Aggregate<TElement, TAccumulate, TResult>(this IEnumerable<TElement>                                          source,
+                                                                        TAccumulate                                                         seed,
+                                                                        Func<TAccumulate, TElement, (TAccumulate accumulate, bool isBreak)> func,
+                                                                        Func<TAccumulate, TResult>                                          resultSelector)
+        {
+            var accumulate = seed;
+
+            foreach (var item in source)
+            {
+                var iteratorResult = func.Invoke(accumulate, item);
+
+                accumulate = iteratorResult.accumulate;
+
+                if (iteratorResult.isBreak)
+                {
+                    break;
+                }
+            }
+
+            var result = resultSelector.Invoke(accumulate);
 
             return result;
         }

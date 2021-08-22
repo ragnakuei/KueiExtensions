@@ -60,5 +60,41 @@ namespace KueiExtensionsTests.Common.IEnumerableOfTExtensions
 
             Assert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void isBreak_Case01()
+        {
+            var actual = Enumerable.Range(1, 10)
+                                   .Aggregate(100,
+                                              (accumulate, item) =>
+                                              {
+                                                  var iteratorResult = accumulate + item;
+                                                  var isBreak        = item % 5 == 0;
+                                                  return (iteratorResult, isBreak);
+                                              },
+                                              accumulate => accumulate - 100);
+
+            var expected = 15;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void isBreak_index_Case01()
+        {
+            var actual = Enumerable.Range(1, 10)
+                                   .Aggregate(100,
+                                              (accumulate, item, index) =>
+                                              {
+                                                  var iteratorResult = accumulate + item + index;
+                                                  var isBreak        = item % 5 == 0;
+                                                  return (iteratorResult, isBreak);
+                                              },
+                                              accumulate => accumulate - 100);
+
+            var expected = 25;
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
