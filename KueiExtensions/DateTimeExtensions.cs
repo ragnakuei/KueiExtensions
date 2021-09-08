@@ -15,22 +15,22 @@ namespace KueiExtensions
         /// <param name="exceptPeriods"></param>
         /// <returns></returns>
         /// <exception cref="NotSupportedException"></exception>
-        public static IEnumerable<PeriodDateTimeDto> Except(this PeriodDateTimeDto         source,
-                                                            IEnumerable<PeriodDateTimeDto> exceptPeriods)
+        public static IEnumerable<DurationDto> Except(this DurationDto         source,
+                                                            IEnumerable<DurationDto> exceptPeriods)
         {
             // 先依照起始日期排序
-            var exceptPeriodsByOrder = exceptPeriods?.OrderBy(p => p.Begin).ToArray()
-                                    ?? new PeriodDateTimeDto[0];
+            var exceptPeriodsByOrder = exceptPeriods?.OrderBy(p => p.Begin)
+                                                     .ThenBy(p => p.End)
+                                                     .ToArray()
+                                    ?? new DurationDto[0];
 
             var begin = source.Begin;
 
-            for (int i = 0; i < exceptPeriodsByOrder.Length; i++)
+            foreach (var exceptPeriod in exceptPeriodsByOrder)
             {
-                var exceptPeriod = exceptPeriodsByOrder[i];
-
                 if (begin < exceptPeriod.Begin)
                 {
-                    yield return new PeriodDateTimeDto(begin, exceptPeriod.Begin);
+                    yield return new DurationDto(begin, exceptPeriod.Begin);
                     begin = exceptPeriod.End;
                 }
                 else if (begin == exceptPeriod.Begin)
@@ -45,7 +45,7 @@ namespace KueiExtensions
 
             if (begin < source.End)
             {
-                yield return new PeriodDateTimeDto(begin, source.End);
+                yield return new DurationDto(begin, source.End);
             }
             else if (begin > source.End)
             {

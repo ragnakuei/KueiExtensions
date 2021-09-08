@@ -2,9 +2,9 @@
 
 namespace KueiExtensions.Models
 {
-    public class PeriodDateTimeDto
+    public struct DurationDto
     {
-        public PeriodDateTimeDto(DateTime begin, DateTime end)
+        public DurationDto(DateTime begin, DateTime end)
         {
             Begin = begin;
             End   = end;
