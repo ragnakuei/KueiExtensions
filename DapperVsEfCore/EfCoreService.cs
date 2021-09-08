@@ -47,8 +47,6 @@ WHERE [AGuid] = @Guid
                                                }
 
                                                return tempResult;
-
-                                               return (A)null;
                                            });
 
             return boxDto;
