@@ -44,6 +44,9 @@
   - QueryMultipleResult().Result\<T>()
   - QueryMultipleResult().Result()
 
+- DynamicParameters
+  - Add()
+
 - TypeHandler
   - VarcharToNullDecimalHandler
 
