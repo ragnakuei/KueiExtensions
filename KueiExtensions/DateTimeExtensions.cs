@@ -30,10 +30,23 @@ namespace KueiExtensions
             {
                 if (begin < exceptPeriod.Begin)
                 {
-                    yield return new DurationDto(begin, exceptPeriod.Begin);
+                    if (source.End >= exceptPeriod.Begin)
+                    {
+                        yield return new DurationDto(begin, exceptPeriod.Begin);
+                        begin = exceptPeriod.End;
+                    }
                 }
-
-                begin = exceptPeriod.End;
+                else if (begin == exceptPeriod.Begin)
+                {
+                    begin = exceptPeriod.End;
+                }
+                else // begin > exceptPeriod.Begin
+                {
+                    if (begin < exceptPeriod.End)
+                    {
+                        begin = exceptPeriod.End;
+                    }
+                }
             }
 
             if (begin < source.End)
@@ -42,7 +55,7 @@ namespace KueiExtensions
             }
             else if (begin > source.End)
             {
-                throw new NotSupportedException("結束時間早於於排除起始時間");
+                // throw new NotSupportedException("結束時間早於於排除起始時間");
             }
         }
     }

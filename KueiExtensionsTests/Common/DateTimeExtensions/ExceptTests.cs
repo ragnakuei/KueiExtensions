@@ -308,7 +308,7 @@ namespace KueiExtensionsTests.Common.DateTimeExtensions
         }
 
         [Test]
-        public void 一個排除時間_Exception_結束時間過晚()
+        public void 一個排除時間_結束時間過晚()
         {
             var sourcePeriod = new DurationDto(new DateTime(2020, 2, 3, 8,  0, 0),
                                                new DateTime(2020, 2, 3, 17, 0, 0));
@@ -319,7 +319,51 @@ namespace KueiExtensionsTests.Common.DateTimeExtensions
                                                     new DateTime(2020, 2, 3, 17, 5, 0)),
                                 };
 
-            Assert.Throws<NotSupportedException>(() => sourcePeriod.Except(exceptPeriods).ToArray(), null);
+            var actual = sourcePeriod.Except(exceptPeriods).ToArray();
+            var expected = new[]
+                           {
+                               new DurationDto(new DateTime(2020, 2, 3, 8,  0, 0), new DateTime(2020, 2, 3, 9,  0, 0)),
+                           };
+
+            actual.Should().BeEquivalentTo(expected);
+        }
+
+        [Test]
+        public void 一個排除時間_起始結束過早()
+        {
+            var sourcePeriod = new DurationDto(new DateTime(2020, 2, 3, 9, 0, 0), new DateTime(2020, 2, 3, 10, 0, 0));
+
+            var exceptPeriods = new[]
+                                {
+                                    new DurationDto(new DateTime(2020, 2, 3, 8, 0, 0), new DateTime(2020, 2, 3, 8, 30, 0)),
+                                };
+
+            var actual = sourcePeriod.Except(exceptPeriods).ToArray();
+            var expected = new[]
+                           {
+                               new DurationDto(new DateTime(2020, 2, 3, 9, 0, 0), new DateTime(2020, 2, 3, 10, 0, 0))
+                           };
+
+            actual.Should().BeEquivalentTo(expected);
+        }
+
+        [Test]
+        public void 一個排除時間_起始結束過晚()
+        {
+            var sourcePeriod = new DurationDto(new DateTime(2020, 2, 3, 9, 0, 0), new DateTime(2020, 2, 3, 10, 0, 0));
+
+            var exceptPeriods = new[]
+                                {
+                                    new DurationDto(new DateTime(2020, 2, 3, 11, 0, 0), new DateTime(2020, 2, 3, 11, 30, 0)),
+                                };
+
+            var actual = sourcePeriod.Except(exceptPeriods).ToArray();
+            var expected = new[]
+                           {
+                               new DurationDto(new DateTime(2020, 2, 3, 9, 0, 0), new DateTime(2020, 2, 3, 10, 0, 0))
+                           };
+
+            actual.Should().BeEquivalentTo(expected);
         }
 
         [Test]
