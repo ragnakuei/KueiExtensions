@@ -286,7 +286,7 @@ namespace KueiExtensionsTests.Common.DateTimeExtensions
         }
 
         [Test]
-        public void 一個排除時間_Exception_起始時間過早()
+        public void 一個排除時間_起始時間過早()
         {
             var sourcePeriod = new DurationDto(new DateTime(2020, 2, 3, 8,  0, 0),
                                                new DateTime(2020, 2, 3, 17, 0, 0));
@@ -297,7 +297,14 @@ namespace KueiExtensionsTests.Common.DateTimeExtensions
                                                     new DateTime(2020, 2, 3, 9, 5, 0)),
                                 };
 
-            Assert.Throws<NotSupportedException>(() => sourcePeriod.Except(exceptPeriods).ToArray(), null);
+            var actual = sourcePeriod.Except(exceptPeriods).ToArray();
+            var expected = new[]
+                           {
+                               new DurationDto(new DateTime(2020, 2, 3, 9,  5,  0),
+                                               new DateTime(2020, 2, 3, 17, 0, 0)),
+                           };
+
+            actual.Should().BeEquivalentTo(expected);
         }
 
         [Test]
@@ -316,20 +323,24 @@ namespace KueiExtensionsTests.Common.DateTimeExtensions
         }
 
         [Test]
-        public void 二個排除時間_Exception_排除時間有重疊()
+        public void 二個排除時間_排除時間有重疊()
         {
-            var sourcePeriod = new DurationDto(new DateTime(2020, 2, 3, 8,  0, 0),
-                                               new DateTime(2020, 2, 3, 17, 0, 0));
+            var sourcePeriod = new DurationDto(new DateTime(2020, 2, 3, 8,  0, 0), new DateTime(2020, 2, 3, 17, 0, 0));
 
             var exceptPeriods = new[]
                                 {
-                                    new DurationDto(new DateTime(2020, 2, 3, 9,  0, 0),
-                                                    new DateTime(2020, 2, 3, 10, 0, 0)),
-                                    new DurationDto(new DateTime(2020, 2, 3, 9,  30, 0),
-                                                    new DateTime(2020, 2, 3, 11, 0,  0)),
+                                    new DurationDto(new DateTime(2020, 2, 3, 9,  0, 0), new DateTime(2020, 2, 3, 10, 0, 0)),
+                                    new DurationDto(new DateTime(2020, 2, 3, 9,  30, 0), new DateTime(2020, 2, 3, 11, 0,  0)),
                                 };
 
-            Assert.Throws<NotSupportedException>(() => sourcePeriod.Except(exceptPeriods).ToArray(), null);
+            var actual = sourcePeriod.Except(exceptPeriods).ToArray();
+            var expected = new[]
+                           {
+                               new DurationDto(new DateTime(2020, 2, 3, 8, 0, 0), new DateTime(2020, 2, 3, 9, 0, 0)),
+                               new DurationDto(new DateTime(2020, 2, 3, 11, 0, 0), new DateTime(2020, 2, 3, 17, 0, 0)),
+                           };
+
+            actual.Should().BeEquivalentTo(expected);
         }
     }
 }

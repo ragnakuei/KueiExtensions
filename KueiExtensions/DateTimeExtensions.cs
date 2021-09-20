@@ -31,16 +31,9 @@ namespace KueiExtensions
                 if (begin < exceptPeriod.Begin)
                 {
                     yield return new DurationDto(begin, exceptPeriod.Begin);
-                    begin = exceptPeriod.End;
                 }
-                else if (begin == exceptPeriod.Begin)
-                {
-                    begin = exceptPeriod.End;
-                }
-                else
-                {
-                    throw new NotSupportedException("起始時間晚於排除起始時間");
-                }
+
+                begin = exceptPeriod.End;
             }
 
             if (begin < source.End)
