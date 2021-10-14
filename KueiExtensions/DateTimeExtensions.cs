@@ -16,7 +16,7 @@ namespace KueiExtensions
         /// <returns></returns>
         /// <exception cref="NotSupportedException"></exception>
         public static IEnumerable<DurationDto> Except(this DurationDto         source,
-                                                            IEnumerable<DurationDto> exceptPeriods)
+                                                      IEnumerable<DurationDto> exceptPeriods)
         {
             // 先依照起始日期排序
             var exceptPeriodsByOrder = exceptPeriods?.OrderBy(p => p.Begin)
@@ -30,16 +30,22 @@ namespace KueiExtensions
             {
                 if (begin < exceptPeriod.Begin)
                 {
-                    yield return new DurationDto(begin, exceptPeriod.Begin);
-                    begin = exceptPeriod.End;
+                    if (source.End >= exceptPeriod.Begin)
+                    {
+                        yield return new DurationDto(begin, exceptPeriod.Begin);
+                        begin = exceptPeriod.End;
+                    }
                 }
                 else if (begin == exceptPeriod.Begin)
                 {
                     begin = exceptPeriod.End;
                 }
-                else
+                else // begin > exceptPeriod.Begin
                 {
-                    throw new NotSupportedException("起始時間晚於排除起始時間");
+                    if (begin < exceptPeriod.End)
+                    {
+                        begin = exceptPeriod.End;
+                    }
                 }
             }
 
@@ -49,7 +55,7 @@ namespace KueiExtensions
             }
             else if (begin > source.End)
             {
-                throw new NotSupportedException("結束時間早於於排除起始時間");
+                // throw new NotSupportedException("結束時間早於於排除起始時間");
             }
         }
     }
