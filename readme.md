@@ -72,3 +72,9 @@
 
 - Controller
   - RenderViewAsync<T>()
+
+## KueiQueueService
+
+- QueueService
+  - QueueActionAsync()
+
