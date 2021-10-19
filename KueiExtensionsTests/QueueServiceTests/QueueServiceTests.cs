@@ -1,6 +1,5 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
@@ -40,19 +39,22 @@ namespace KueiExtensionsTests.QueueServiceTests
 
             var actual = new ConcurrentBag<TestDto>();
 
-            var tasks = dtos.AsParallel()
-                            .Select(dto =>
-                                    {
-                                        return target.QueueActionAsync(dto,
-                                                                       dto => dto.Id.ToString() + dto.Name,
-                                                                       (dto) =>
-                                                                       {
-                                                                           Thread.Sleep(1);
-                                                                           actual.Add(dto);
-                                                                       },
-                                                                       30,
-                                                                       100);
-                                    });
+            var tasks = new Task[dtos.Count];
+
+            Parallel.For(0,
+                         dtos.Count,
+                         i =>
+                         {
+                             tasks[i] = target.QueueActionAsync(dtos[i],
+                                                                dto => dto.Id.ToString() + dto.Name,
+                                                                (dto) =>
+                                                                {
+                                                                    Thread.Sleep(1);
+                                                                    actual.Add(dto);
+                                                                },
+                                                                30,
+                                                                100);
+                         });
 
             await Task.WhenAll(tasks);
 

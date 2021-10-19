@@ -5,6 +5,9 @@ using Microsoft.Extensions.Logging;
 
 namespace KueiQueueService
 {
+    /// <summary>
+    /// Need Singleton LifeTime
+    /// </summary>
     public class QueueService<T> where T : class
     {
         public QueueService(ILogger<QueueService<T>> logger)
@@ -27,7 +30,7 @@ namespace KueiQueueService
         public async Task QueueActionAsync(T               dto,
                                            Func<T, string> getGroupKey,
                                            Action<T>       action,
-                                           int             retryCount = 30,
+                                           int             retryCount        = 30,
                                            int             delayMilliseconds = 10)
         {
             try
@@ -53,8 +56,11 @@ namespace KueiQueueService
                                                          int             delayMilliseconds = 1)
         {
             var groupKey = getKey.Invoke(dto);
-            var queue    = HandlingGroupDtos.GetOrAdd(groupKey, x => new ConcurrentQueue<T>());
+            Logger.LogDebug($"queue groupKey:{groupKey}");
+
+            var queue = HandlingGroupDtos.GetOrAdd(groupKey, new ConcurrentQueue<T>());
             queue.Enqueue(dto);
+            Logger.LogDebug($"queue count:{queue.Count}");
 
             var retryCount = 0;
 
@@ -65,8 +71,6 @@ namespace KueiQueueService
                 {
                     return;
                 }
-
-                Logger?.LogDebug("wait T");
 
                 await Task.Delay(delayMilliseconds);
             }
@@ -90,7 +94,11 @@ namespace KueiQueueService
             var queue = HandlingGroupDtos.GetOrAdd(groupKey, x => new ConcurrentQueue<T>());
             if (queue.TryDequeue(out _) == false)
             {
-                Logger?.LogError("Queue 移除 T 失敗");
+                Logger?.LogError("Queue remove T failed");
+            }
+            else
+            {
+                Logger?.LogDebug("Queue remove T successfully");
             }
         }
     }
