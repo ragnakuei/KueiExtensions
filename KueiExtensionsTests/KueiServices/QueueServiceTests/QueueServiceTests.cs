@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using FluentAssertions;
-using KueiQueueService;
+using KueiServices;
 using Microsoft.Extensions.Logging;
 using NUnit.Framework;
 

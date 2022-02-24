@@ -22,13 +22,17 @@
       <ProjectReference Include="..\KueiExtensions.Microsoft.AspNetCore\KueiExtensions.Microsoft.AspNetCore.csproj" />
       <ProjectReference Include="..\KueiExtensions.System.Text.Json\KueiExtensions.System.Text.Json.csproj" />
       <ProjectReference Include="..\KueiExtensions\KueiExtensions.csproj" />
-      <ProjectReference Include="..\KueiQueueService\KueiQueueService.csproj" />
+      <ProjectReference Include="..\KueiServices\KueiServices.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <None Update="appsettings.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="KueiServices" />
     </ItemGroup>
 
 </Project>

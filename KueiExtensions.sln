@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31129.286
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KueiExtensions", "KueiExtensions\KueiExtensions.csproj", "{3F6A70F1-619B-4CD7-8766-A97AF2DD6989}"
 EndProject
@@ -18,19 +18,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionF
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KueiExtensions.Microsoft.AspNetCore", "KueiExtensions.Microsoft.AspNetCore\KueiExtensions.Microsoft.AspNetCore.csproj", "{25E2F8F8-6002-4C3C-B15A-F5E26D9D7FBB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KueiExtensions.Microsoft.AspNetCore", "KueiExtensions.Microsoft.AspNetCore\KueiExtensions.Microsoft.AspNetCore.csproj", "{25E2F8F8-6002-4C3C-B15A-F5E26D9D7FBB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Benchmarks", "Benchmarks", "{4E6EEA56-5D54-4BE5-8EC5-2C2CBB36619F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupByToDictionaryVs", "GroupByToDictionaryVs\GroupByToDictionaryVs.csproj", "{4EFD6EBA-AE87-4B41-8B7A-7E08AD9BDDD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupByToDictionaryVs", "GroupByToDictionaryVs\GroupByToDictionaryVs.csproj", "{4EFD6EBA-AE87-4B41-8B7A-7E08AD9BDDD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KueiExtensions.EntityFrameworkCore", "KueiExtensions.EntityFrameworkCore\KueiExtensions.EntityFrameworkCore.csproj", "{B949062F-B3DB-460D-8429-D01C3538F3A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KueiExtensions.EntityFrameworkCore", "KueiExtensions.EntityFrameworkCore\KueiExtensions.EntityFrameworkCore.csproj", "{B949062F-B3DB-460D-8429-D01C3538F3A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DapperVsEfCore", "DapperVsEfCore\DapperVsEfCore.csproj", "{FC386EDE-C126-4F3D-9F62-34AF915FF8B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DapperVsEfCore", "DapperVsEfCore\DapperVsEfCore.csproj", "{FC386EDE-C126-4F3D-9F62-34AF915FF8B7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KueiExtensionsNetFramework45Tests", "KueiExtensionsNetFramework45Tests\KueiExtensionsNetFramework45Tests.csproj", "{53F1F630-1858-43FD-9118-623B22BBA6C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KueiQueueService", "KueiQueueService\KueiQueueService.csproj", "{9319E08C-BACE-4145-9E23-A07E67E82E68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KueiServices", "KueiServices\KueiServices.csproj", "{EDF12447-D3BE-429B-A874-2602965EB272}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,19 +78,19 @@ Global
 		{53F1F630-1858-43FD-9118-623B22BBA6C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53F1F630-1858-43FD-9118-623B22BBA6C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53F1F630-1858-43FD-9118-623B22BBA6C7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9319E08C-BACE-4145-9E23-A07E67E82E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9319E08C-BACE-4145-9E23-A07E67E82E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9319E08C-BACE-4145-9E23-A07E67E82E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9319E08C-BACE-4145-9E23-A07E67E82E68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF12447-D3BE-429B-A874-2602965EB272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF12447-D3BE-429B-A874-2602965EB272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF12447-D3BE-429B-A874-2602965EB272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF12447-D3BE-429B-A874-2602965EB272}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A37CED9C-3AFE-4147-9300-2F2F256AA757}
-	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4EFD6EBA-AE87-4B41-8B7A-7E08AD9BDDD6} = {4E6EEA56-5D54-4BE5-8EC5-2C2CBB36619F}
 		{FC386EDE-C126-4F3D-9F62-34AF915FF8B7} = {4E6EEA56-5D54-4BE5-8EC5-2C2CBB36619F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A37CED9C-3AFE-4147-9300-2F2F256AA757}
 	EndGlobalSection
 EndGlobal
