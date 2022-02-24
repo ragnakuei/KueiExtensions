@@ -43,5 +43,5 @@ public class PropertyInfoDto
     /// <summary>
     /// 取出驗証用的 Attributes
     /// </summary>
-    public Dictionary<string, object> ValidationAttributes { get; set; }
+    public Dictionary<string, object> ValidationRules { get; set; }
 }

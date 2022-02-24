@@ -29,10 +29,10 @@ public class PropertyInfoService
                          .Select(p =>
                                  {
                                      var dto = new PropertyInfoDto();
-                                     dto.PropertyName         = p.Name;
-                                     dto.DisplayAttribute     = p.GetCustomAttributes(typeof(DisplayAttribute), false)?.FirstOrDefault() as DisplayAttribute;
-                                     dto.ValidationAttributes = GetValidationAttributes(p);
-                                     dto.PropertyInfo         = p;
+                                     dto.PropertyName     = p.Name;
+                                     dto.DisplayAttribute = p.GetCustomAttributes(typeof(DisplayAttribute), false)?.FirstOrDefault() as DisplayAttribute;
+                                     dto.ValidationRules  = GetValidationRules(p);
+                                     dto.PropertyInfo     = p;
                                      dto.ElementType = new[]
                                                        {
                                                            p.PropertyType.GetElementType(),
@@ -57,20 +57,20 @@ public class PropertyInfoService
         return result;
     }
 
-    private Dictionary<string, object> GetValidationAttributes(PropertyInfo propertyInfo)
+    private Dictionary<string, object> GetValidationRules(PropertyInfo propertyInfo)
     {
         var result = new Dictionary<string, object>();
 
         var customAttributes = propertyInfo.GetCustomAttributes().ToArray();
 
-        AssignRequiredValidationRule(result, customAttributes);
-        AssignStringLengthValidationRule(result, customAttributes);
-        AssignNumberRangeValidationRule(result, customAttributes);
+        AssignValidationRuleRequired(result, customAttributes);
+        AssignValidationRuleStringLength(result, customAttributes);
+        AssignValidationRuleNumberRange(result, customAttributes);
 
         return result;
     }
 
-    private void AssignRequiredValidationRule(Dictionary<string, object> validationRules,
+    private void AssignValidationRuleRequired(Dictionary<string, object> validationRules,
                                               Attribute[]                customAttributes)
     {
         var requiredAttribute = customAttributes.OfType<RequiredAttribute>().FirstOrDefault();
@@ -82,7 +82,7 @@ public class PropertyInfoService
         validationRules.Add("required", true);
     }
 
-    private void AssignStringLengthValidationRule(Dictionary<string, object> validationRules,
+    private void AssignValidationRuleStringLength(Dictionary<string, object> validationRules,
                                                   Attribute[]                customAttributes)
     {
         var requiredAttribute = customAttributes.OfType<StringLengthAttribute>().FirstOrDefault();
@@ -102,7 +102,7 @@ public class PropertyInfoService
         }
     }
 
-    private void AssignNumberRangeValidationRule(Dictionary<string, object> validationRules,
+    private void AssignValidationRuleNumberRange(Dictionary<string, object> validationRules,
                                                  Attribute[]                customAttributes)
     {
         var rangeAttribute = customAttributes.OfType<RangeAttribute>().FirstOrDefault();

@@ -115,7 +115,7 @@ public class GetValidationRuleTests
 
     private Dictionary<string, Dictionary<string, object>> GetValidationRulesResult(Dictionary<string, PropertyInfoDto> properties)
     {
-        var result = properties.ToDictionary(kv => kv.Key, kv => kv.Value.ValidationAttributes);
+        var result = properties.ToDictionary(kv => kv.Key, kv => kv.Value.ValidationRules);
         return result;
     }
 }
