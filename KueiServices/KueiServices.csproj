@@ -1,6 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>KueiServices</PackageId>
+    <Authors>Kuei</Authors>
+    <Company>RagnaKuei</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>1.0.0</PackageVersion>
+    <PackageProjectUrl>https://github.com/ragnakuei/KueiExtensions/tree/master/KueiServices</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/ragnakuei/KueiExtensions/tree/master/KueiServices</RepositoryUrl>
+    <LangVersion>latest</LangVersion>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
