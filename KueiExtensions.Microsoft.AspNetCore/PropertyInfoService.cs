@@ -66,6 +66,7 @@ public class PropertyInfoService
         AssignValidationRuleRequired(result, customAttributes);
         AssignValidationRuleStringLength(result, customAttributes);
         AssignValidationRuleNumberRange(result, customAttributes);
+        AssignValidationRuleEmailAddress(result, customAttributes);
 
         return result;
     }
@@ -113,5 +114,17 @@ public class PropertyInfoService
 
         validationRules.Add("min", rangeAttribute.Minimum);
         validationRules.Add("max", rangeAttribute.Maximum);
+    }
+
+    private void AssignValidationRuleEmailAddress(Dictionary<string, object> validationRules,
+                                                  Attribute[]                customAttributes)
+    {
+        var rangeAttribute = customAttributes.OfType<EmailAddressAttribute>().FirstOrDefault();
+        if (rangeAttribute == null)
+        {
+            return;
+        }
+
+        validationRules.Add("email", true);
     }
 }
