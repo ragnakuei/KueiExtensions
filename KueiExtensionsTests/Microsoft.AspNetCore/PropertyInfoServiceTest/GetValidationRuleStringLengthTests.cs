@@ -27,7 +27,7 @@ public class GetValidationRuleStringLengthTests : GetValidationRuleTests
                        {
                            ["Name"] = new()
                                       {
-                                          ["maxLength"] = 10,
+                                          ["maxlength"] = 10,
                                       }
                        };
 
@@ -51,8 +51,8 @@ public class GetValidationRuleStringLengthTests : GetValidationRuleTests
                        {
                            ["Name"] = new()
                                       {
-                                          ["maxLength"] = 10,
-                                          ["minLength"] = 3,
+                                          ["maxlength"] = 10,
+                                          ["minlength"] = 3,
                                       }
                        };
 

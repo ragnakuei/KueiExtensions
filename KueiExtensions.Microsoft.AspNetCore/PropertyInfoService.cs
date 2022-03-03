@@ -94,12 +94,12 @@ public class PropertyInfoService
 
         if (requiredAttribute.MaximumLength > 0)
         {
-            validationRules.Add("maxLength", requiredAttribute.MaximumLength);
+            validationRules.Add("maxlength", requiredAttribute.MaximumLength);
         }
 
         if (requiredAttribute.MinimumLength > 0)
         {
-            validationRules.Add("minLength", requiredAttribute.MinimumLength);
+            validationRules.Add("minlength", requiredAttribute.MinimumLength);
         }
     }
 
