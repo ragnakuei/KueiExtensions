@@ -140,12 +140,12 @@ namespace KueiExtensions
             return result;
         }
 
-        public static TResult Aggregate<TElement, TAccumulate, TResult>(this IEnumerable<TElement>                                          source,
-                                                                        TAccumulate                                                         seed,
+        public static TResult Aggregate<TElement, TAccumulate, TResult>(this IEnumerable<TElement>                                               source,
+                                                                        TAccumulate                                                              seed,
                                                                         Func<TAccumulate, TElement, int, (TAccumulate accumulate, bool isBreak)> func,
-                                                                        Func<TAccumulate, TResult>                                          resultSelector)
+                                                                        Func<TAccumulate, TResult>                                               resultSelector)
         {
-            var index = 0;
+            var index      = 0;
             var accumulate = seed;
 
             foreach (var item in source)
@@ -241,6 +241,37 @@ namespace KueiExtensions
                 else
                 {
                     result.Add(elementKey, new List<TElement> { element });
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// GroupBy + ToDictionary
+        /// </summary>
+        public static Dictionary<TKey1, Dictionary<TKey2, List<TElement>>> GroupByToDictionary<TKey1, TKey2, TElement>(this IEnumerable<TElement> source,
+                                                                                                                       Func<TElement, TKey1>      keySelector1,
+                                                                                                                       Func<TElement, TKey2>      keySelector2)
+        {
+            var result = new Dictionary<TKey1, Dictionary<TKey2, List<TElement>>>();
+
+            var groupByKey1 = source.GroupByToDictionary(keySelector1);
+
+            foreach (var key1Values in groupByKey1)
+            {
+                var groupByKey2 = key1Values.Value.GroupByToDictionary(keySelector2);
+
+                foreach (var key2Values in groupByKey2)
+                {
+                    if (result.TryGetValue(key1Values.Key, out var step3Result))
+                    {
+                        step3Result.Add(key2Values.Key, key2Values.Value);
+                    }
+                    else
+                    {
+                        result.Add(key1Values.Key, new Dictionary<TKey2, List<TElement>> { { key2Values.Key, key2Values.Value } });
+                    }
                 }
             }
 

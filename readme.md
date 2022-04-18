@@ -38,6 +38,14 @@
   - TrimStart()
   - TrimEnd()
   
+- DataTable
+  - Except()
+  - MergeByExcept()
+  - MergeByDistinct()
+  - MergeColumns()
+  - LeftJoin()
+  - LeftJoinAppendRight()
+
 ## KueiExtensions.Dapper
 
 - IDbConnection
