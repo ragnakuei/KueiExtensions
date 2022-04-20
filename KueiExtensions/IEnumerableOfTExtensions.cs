@@ -297,5 +297,74 @@ namespace KueiExtensions
                 }
             }
         }
+
+        public static IEnumerable<T> Filter<T>(this IEnumerable<T> source, IEnumerable<T> filter, IEqualityComparer<T> equalityComparer = null)
+        {
+            equalityComparer ??= EqualityComparer<T>.Default;
+
+            foreach (var item in source)
+            {
+                foreach (var filterItem in filter)
+                {
+                    if (equalityComparer.Equals(item, filterItem))
+                    {
+                        yield return item;
+                    }
+                }
+            }
+        }
+
+        public static IEnumerable<T> Filter<T, TFilter>(this IEnumerable<T> source, IEnumerable<TFilter> filter, Func<T, TFilter, bool> predicate)
+        {
+            foreach (var item in source)
+            {
+                foreach (var filterItem in filter)
+                {
+                    if (predicate(item, filterItem))
+                    {
+                        yield return item;
+                    }
+                }
+            }
+        }
+
+        public static bool Contains<T>(this IEnumerable<T>  source,
+                                              IEnumerable<T>       filter,
+                                              IEqualityComparer<T> equalityComparer = null)
+        {
+            equalityComparer ??= EqualityComparer<T>.Default;
+
+            foreach (var item in source)
+            {
+                foreach (var filterItem in filter)
+                {
+                    if (equalityComparer.Equals(item, filterItem))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+
+        public static bool Contains<T, TFilter>(this IEnumerable<T>    source,
+                                                       IEnumerable<TFilter>   filter,
+                                                       Func<T, TFilter, bool> predicate)
+        {
+            foreach (var item in source)
+            {
+                foreach (var filterItem in filter)
+                {
+                    if (predicate(item, filterItem))
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
     }
 }

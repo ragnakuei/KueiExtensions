@@ -9,6 +9,9 @@
   - GroupByToDictionary()
   - ToHashSet45()
   - ExceptNoDistinct()
+  - Filter()
+  - PartialContains()
+  - Contains()
 
 - Decimal
   - ToFix()
