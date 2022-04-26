@@ -1,11 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Reflection;
-using KueiExtensions.Microsoft.AspNetCore.Models;
-
-namespace KueiExtensions.Microsoft.AspNetCore;
+namespace KueiExtensions.Microsoft.AspNetCore.Services;
 
 public class PropertyInfoService
 {

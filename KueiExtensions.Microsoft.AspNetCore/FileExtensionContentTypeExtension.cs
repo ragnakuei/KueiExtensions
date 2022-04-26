@@ -1,19 +1,16 @@
-﻿using Microsoft.AspNetCore.StaticFiles;
+﻿namespace KueiExtensions.Microsoft.AspNetCore;
 
-namespace KueiExtensions.Microsoft.AspNetCore
+public static class FileExtensionContentTypeExtension
 {
-    public static class FileExtensionContentTypeExtension
+    public static string GetContentType(this string fileName, string defaultContentType = "application/octet-stream")
     {
-        public static string GetContentType(this string fileName, string defaultContentType = "application/octet-stream")
+        var provider = new FileExtensionContentTypeProvider();
+
+        if (provider.TryGetContentType(fileName, out var contentType))
         {
-            var provider = new FileExtensionContentTypeProvider();
-
-            if (provider.TryGetContentType(fileName, out var contentType))
-            {
-                return contentType;
-            }
-
-            return defaultContentType;
+            return contentType;
         }
+
+        return defaultContentType;
     }
 }

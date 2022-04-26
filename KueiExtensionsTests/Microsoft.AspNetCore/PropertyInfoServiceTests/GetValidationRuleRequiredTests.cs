@@ -1,38 +1,31 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using FluentAssertions;
-using KueiExtensions.Microsoft.AspNetCore;
-using KueiExtensions.Microsoft.AspNetCore.Models;
+using KueiExtensions.Microsoft.AspNetCore.Services;
 using NUnit.Framework;
 
-namespace KueiExtensionsTests.Microsoft.AspNetCore.PropertyInfoServiceTest;
+namespace KueiExtensionsTests.Microsoft.AspNetCore.PropertyInfoServiceTests;
 
-public class GetValidationRuleEmailAddressTests : GetValidationRuleTests
+public class GetValidationRuleRequiredTests : GetValidationRuleTests
 {
-    [SetUp]
-    public void Setup()
+    private class TestRequiredDto
     {
-    }
-
-    private class TestDto
-    {
-        [EmailAddress]
+        [Required]
         public string Name { get; set; }
     }
 
     [Test]
-    public void TestNumberMinMaxLength()
+    public void TestRequiredDto01()
     {
         var target = new PropertyInfoService();
 
-        var actual = GetValidationRulesResult(target.GetProperties(typeof(TestDto)));
+        var actual = GetValidationRulesResult(target.GetProperties(typeof(TestRequiredDto)));
 
         var expected = new Dictionary<string, Dictionary<string, object>>
                        {
                            ["Name"] = new()
                                       {
-                                          ["email"] = true,
+                                          ["required"] = true,
                                       }
                        };
 

@@ -1,12 +1,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using FluentAssertions;
-using KueiExtensions.Microsoft.AspNetCore;
-using KueiExtensions.Microsoft.AspNetCore.Models;
+using KueiExtensions.Microsoft.AspNetCore.Services;
 using NUnit.Framework;
 
-namespace KueiExtensionsTests.Microsoft.AspNetCore.PropertyInfoServiceTest;
+namespace KueiExtensionsTests.Microsoft.AspNetCore.PropertyInfoServiceTests;
 
 public class GetValidationRuleStringLengthTests : GetValidationRuleTests
 {

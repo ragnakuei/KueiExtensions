@@ -3,7 +3,7 @@ using System.Linq;
 using KueiExtensions.Microsoft.AspNetCore.Models;
 using NUnit.Framework;
 
-namespace KueiExtensionsTests.Microsoft.AspNetCore.PropertyInfoServiceTest;
+namespace KueiExtensionsTests.Microsoft.AspNetCore.PropertyInfoServiceTests;
 
 public class GetValidationRuleTests
 {

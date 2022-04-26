@@ -5,7 +5,7 @@
     <Authors>Kuei</Authors>
     <Company>RagnaKuei</Company>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageVersion>1.0.34</PackageVersion>
+    <PackageVersion>1.0.35</PackageVersion>
     <PackageProjectUrl>https://github.com/ragnakuei/KueiExtensions</PackageProjectUrl>
     <RepositoryUrl>https://github.com/ragnakuei/KueiExtensions</RepositoryUrl>
     <LangVersion>latest</LangVersion>

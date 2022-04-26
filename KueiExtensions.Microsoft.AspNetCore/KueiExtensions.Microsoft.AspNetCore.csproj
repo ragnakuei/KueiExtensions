@@ -9,8 +9,12 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
     <LangVersion>latest</LangVersion>
-    <PackageVersion>1.0.8</PackageVersion>
+    <PackageVersion>1.0.12</PackageVersion>
     <OutputType>Library</OutputType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KueiExtensions\KueiExtensions.csproj" />
+  </ItemGroup>
 
 </Project>

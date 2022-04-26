@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Reflection;
-
-namespace KueiExtensions.Microsoft.AspNetCore.Models;
+﻿namespace KueiExtensions.Microsoft.AspNetCore.Models;
 
 public class PropertyInfoDto
 {
