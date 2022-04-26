@@ -49,6 +49,10 @@
   - LeftJoin()
   - LeftJoinAppendRight()
 
+- Type
+  - IsDictionary()
+  - IsDictionaryValueType()
+
 ## KueiExtensions.Dapper
 
 - IDbConnection
