@@ -1,19 +1,19 @@
 ﻿namespace KueiExtensions.Microsoft.AspNetCore.Services;
 
-public abstract class BaseValidate<T>
+public abstract class BaseValidator<T>
 {
     private Dictionary<string, List<string>> _errors = new();
 
-    public abstract void Validate(ModelStateDictionary modelState, T dto);
-
-    protected void AddErrors(ModelStateDictionary modelState)
+    public void Validate(ModelStateDictionary modelState, T dto)
     {
-        foreach (var kv in modelState)
-        foreach (var error in kv.Value.Errors)
-        {
-            AddError(kv.Key, error.ErrorMessage);
-        }
+        AddErrors(modelState);
+        
+        CustomValidate(dto);
+        
+        CheckErrors();
     }
+
+    protected abstract void CustomValidate(T dto);
 
     protected void AddError(string propertyName, string errorMessage)
     {
@@ -64,13 +64,22 @@ public abstract class BaseValidate<T>
         return d;
     }
 
-    protected void CheckErrors()
+    private void AddErrors(ModelStateDictionary modelState)
+    {
+        foreach (var kv in modelState)
+        foreach (var error in kv.Value.Errors)
+        {
+            AddError(kv.Key, error.ErrorMessage);
+        }
+    }
+
+    private void CheckErrors()
     {
         if (_errors.Count > 0)
         {
-            throw new ValidateFormFailedException("表單驗証失敗")
+            throw new ValidateFormFailedException()
                   {
-                      Errors = _errors
+                      ValidateResult = _errors
                   };
         }
     }

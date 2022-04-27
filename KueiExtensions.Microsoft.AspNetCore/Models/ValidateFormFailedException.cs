@@ -2,10 +2,14 @@
 
 public class ValidateFormFailedException : Exception
 {
-    public ValidateFormFailedException(string message = "")
+    public ValidateFormFailedException()
+    {
+    }
+
+    public ValidateFormFailedException(string message)
         : base(message)
     {
     }
 
-    public Dictionary<string, List<string>>? Errors { get; set; }
+    public Dictionary<string, List<string>>? ValidateResult { get; set; }
 }

@@ -9,8 +9,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
     <LangVersion>latest</LangVersion>
-    <PackageVersion>1.0.12</PackageVersion>
+    <PackageVersion>1.0.17</PackageVersion>
     <OutputType>Library</OutputType>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>

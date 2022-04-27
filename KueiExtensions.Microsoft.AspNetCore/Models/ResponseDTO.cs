@@ -1,9 +1,7 @@
 ﻿namespace KueiExtensions.Microsoft.AspNetCore.Models;
 
-public class ResponseDTO
+public abstract class BaseResponseDTO
 {
-    public bool IsValid => IsFormValid && string.IsNullOrWhiteSpace(AlertMessage);
-    
     /// <summary>
     /// 表單是否驗証成功
     /// </summary>
@@ -16,9 +14,22 @@ public class ResponseDTO
     /// </summary>
     public string? AlertMessage { get; set; }
 
-    /// <summary>
-    /// 表單驗証失敗時，顯示其錯誤訊息
-    /// </summary>
+    public string? ErrorCode { get; set; }
+
+    public string CsrfToken { get; set; }
+
+    public static ResponseDTO ShowAlert(string alertMessage = "")
+    {
+        return new ResponseDTO
+               {
+                   IsFormValid  = true,
+                   AlertMessage = alertMessage,
+               };
+    }
+}
+
+public class ResponseDTO : BaseResponseDTO
+{
     public object? Data { get; set; }
 
     public static ResponseDTO Ok(object? o = null, string messsage = "")
@@ -30,13 +41,19 @@ public class ResponseDTO
                    Data        = o
                };
     }
+}
 
-    public static ResponseDTO ShowAlert(string alertMessage = "")
+public class ResponseDTO<T> : BaseResponseDTO
+{
+    public T Data { get; set; }
+
+    public static ResponseDTO<T> Ok(T o, string messsage = "")
     {
-        return new ResponseDTO
+        return new ResponseDTO<T>
                {
-                   IsFormValid  = true,
-                   AlertMessage = alertMessage,
+                   IsFormValid = true,
+                   Message     = messsage,
+                   Data        = o
                };
     }
 }

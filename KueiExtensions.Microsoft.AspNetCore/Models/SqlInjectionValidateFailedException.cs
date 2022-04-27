@@ -9,4 +9,12 @@ public class SqlInjectionValidateFailedException : Exception
         : base(message)
     {
     }
+    
+    public SqlInjectionValidateFailedException(string message, string content)
+        : base(message)
+    {
+        Content = content;
+    }
+
+    public string Content { get; }
 }
